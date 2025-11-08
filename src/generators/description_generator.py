@@ -79,7 +79,9 @@ class DescriptionGenerator:
             from openai import OpenAI
             client = OpenAI(api_key=self.api_key)
             
-            # Few-shot examples showing variety
+            # Few-shot examples showing variety AND conversation
+            import random
+
             few_shot_examples = [
                 {
                     "role": "assistant",
@@ -96,11 +98,18 @@ class DescriptionGenerator:
   "material_details": "Tire tracks angle across gravel. Navy suit, white pinstripes. Chrome catches overhead sun.",
   "emotional_temperature": "tense"
 }"""
+                },
+                {
+                    "role": "assistant",
+                    "content": """{
+  "action": "Backward: \\"Tomorrow I saw you here.\\" Parade tilts head. \\"Was I performing?\\" Backward considers the future-past. \\"You will have been.\\"",
+  "material_details": "Shadows stretch toward evening. Green embroidery on pink wool. Dust hangs suspended.",
+  "emotional_temperature": "ritual"
+}"""
                 }
             ]
 
-            # Randomly pick one example to show
-            import random
+            # Pick 1-2 examples randomly to show variety
             few_shot_example = random.choice(few_shot_examples)
             
             response = client.chat.completions.create(
@@ -153,10 +162,12 @@ class DescriptionGenerator:
         history_note = ""
         if len(characters) == 2:
             char1, char2 = characters
-            past_meetings = char1.get_memories_about(char2.id, limit=2)
+            past_meetings = char1.get_memories_about(char2.id, limit=3)
             if past_meetings:
-                history_note = f"\nPAST INTERACTIONS: These characters have met before. "
-                history_note += f"Last time: {past_meetings[-1].content[:60]}..."
+                history_note = f"\n\n🔁 CONVERSATION HISTORY (what they said to each other recently):"
+                for mem in past_meetings[-3:]:  # Last 3 interactions
+                    history_note += f"\n- {mem.content[:100]}"
+                history_note += "\n\n⚠️ CRITICAL: They are CONTINUING this conversation. DON'T repeat what was already said. Have them RESPOND and move the conversation forward."
         
         prompt = f"""Generate a field note for this moment:
 
@@ -238,8 +249,15 @@ Format as JSON:
 4. VARY your vocabulary - if you used a word recently, find a synonym
 5. VARY emotional temperatures - cycle through: tense, charged, exuberant, melancholic, ritual, aggressive, tender, ruptured, playful
 6. DO THE CREATIVE WORK - embellish, invent specific details, make each moment distinctive
+7. 🔁 CONVERSATIONS CONTINUE: If you're shown conversation history, the characters are CONTINUING that conversation. They RESPOND to what was said, they don't repeat it. Move the dialogue forward.
 
 Your job is to SURPRISE with specificity. Not to describe blandly.
+
+CONVERSATION RULES:
+- If Character A asked a question, Character B should answer (or deflect, or mishear)
+- Don't have them say the exact same line twice
+- Let conversations evolve - they can change topics, get interrupted, trail off
+- Silence is okay too - "No answer." / "The other waits." / "Nothing said."
 
 DIALOGUE FORMAT (when 2+ characters):
 "How long?" Measurer asks.
