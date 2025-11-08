@@ -1,0 +1,342 @@
+"""
+LLM-based description generator for vivid field notes.
+
+This module can be configured to use different LLM backends:
+- OpenAI API (GPT-4, GPT-3.5)
+- Anthropic Claude
+- Local models via Ollama
+- Or fallback to template-based generation
+"""
+import os
+import json
+from typing import Optional, Dict, List
+from datetime import datetime
+
+from src.models.character import Character
+from src.models.location import Location
+from src.models.interaction import InteractionType, EmotionalTemperature
+
+
+class DescriptionGenerator:
+    """Generates vivid, specific descriptions for interactions."""
+    
+    def __init__(self, use_llm: bool = True, api_key: Optional[str] = None, 
+                 model: str = "gpt-4"):
+        """
+        Args:
+            use_llm: If True, use LLM. If False, use templates.
+            api_key: API key for LLM service (or set OPENAI_API_KEY env var)
+            model: Model name (gpt-4, gpt-3.5-turbo, claude-3, etc.)
+        """
+        self.use_llm = use_llm
+        self.model = model
+        
+        if use_llm:
+            self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
+            if not self.api_key:
+                print("Warning: No API key provided. Falling back to template-based generation.")
+                self.use_llm = False
+    
+    def generate_interaction_description(
+        self,
+        interaction_type: InteractionType,
+        location: Location,
+        characters: List[Character],
+        action_context: str,
+        time_of_day: str,
+        weather: str
+    ) -> tuple[str, str, EmotionalTemperature]:
+        """
+        Generate vivid description of an interaction.
+        
+        Returns:
+            (action_description, material_details, emotional_temperature)
+        """
+        if self.use_llm:
+            return self._generate_with_llm(interaction_type, location, characters,
+                                          action_context, time_of_day, weather)
+        else:
+            return self._generate_with_template(interaction_type, location, characters,
+                                               action_context, time_of_day, weather)
+    
+    def _generate_with_llm(
+        self,
+        interaction_type: InteractionType,
+        location: Location,
+        characters: List[Character],
+        action_context: str,
+        time_of_day: str,
+        weather: str
+    ) -> tuple[str, str, EmotionalTemperature]:
+        """Generate description using LLM."""
+        
+        # Build context for the LLM
+        prompt = self._build_prompt(interaction_type, location, characters,
+                                   action_context, time_of_day, weather)
+        
+        try:
+            # Try to use OpenAI API (new v1.0+ syntax)
+            from openai import OpenAI
+            client = OpenAI(api_key=self.api_key)
+            
+            # Few-shot example to show correct dialogue format
+            few_shot_example = {
+                "role": "assistant",
+                "content": """{
+  "action": "Measurer stops mid-step. \\"3.7 meters,\\" he announces. Collector looks up from the ground. \\"Between what?\\" Measurer extends the tape. \\"You and the nearest fallen thing.\\"",
+  "material_details": "Aqua blazer against pink ground. Measuring tape bright yellow.",
+  "emotional_temperature": "playful"
+}"""
+            }
+            
+            response = client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": self._get_system_prompt()},
+                    {"role": "user", "content": "Generate a field note with Measurer and Collector talking."},
+                    few_shot_example,  # Show example with actual dialogue
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=1.2,  # VERY high for creative dialogue
+                max_tokens=350
+            )
+            
+            result = response.choices[0].message.content
+            return self._parse_llm_response(result)
+            
+        except Exception as e:
+            print(f"LLM generation failed: {e}. Falling back to templates.")
+            return self._generate_with_template(interaction_type, location, characters,
+                                               action_context, time_of_day, weather)
+    
+    def _build_prompt(
+        self,
+        interaction_type: InteractionType,
+        location: Location,
+        characters: List[Character],
+        action_context: str,
+        time_of_day: str,
+        weather: str
+    ) -> str:
+        """Build prompt for LLM."""
+        
+        char_descriptions = []
+        for char in characters:
+            desc = f"- {char.name} ({char.archetype}): Currently {char.emotional_state.value}"
+            
+            # Add recent memories for context
+            recent_memories = char.get_recent_memories(count=3)
+            if recent_memories:
+                memory_context = " | Recent memories: "
+                memory_context += "; ".join([m.content[:30] + "..." for m in recent_memories])
+                desc += memory_context
+            
+            char_descriptions.append(desc)
+        
+        # Check for shared history between characters
+        history_note = ""
+        if len(characters) == 2:
+            char1, char2 = characters
+            past_meetings = char1.get_memories_about(char2.id, limit=2)
+            if past_meetings:
+                history_note = f"\nPAST INTERACTIONS: These characters have met before. "
+                history_note += f"Last time: {past_meetings[-1].content[:60]}..."
+        
+        prompt = f"""Generate a field note for this moment:
+
+LOCATION: {location.name}
+TIME: {time_of_day}, {weather}
+
+CHARACTERS PRESENT:
+{chr(10).join(char_descriptions)}{history_note}
+
+ACTION CONTEXT: {action_context}
+
+CHARACTER VOICES (let them speak naturally in their style):
+- Measurer: Quantifies abstract things, announces measurements
+- The One Who Knows: References meta/simulation concepts as if they're weather
+- Collector: Asks about lost things, returns dropped words from earlier
+- The Listener: Responds to what wasn't said, mishears deliberately
+- Backward: Confuses past and future direction in speech
+- Parade: Announces ceremonies, assigns roles to no-one
+- Forget-Nothing: Corrects minor details, cites old conversations
+- Bird Gatherer: Minimal speech, deflects questions about birds
+- Tuesday: Evasive about the suitcase, smiles
+- Sleeper: Delayed responses, dream-logic answers
+
+Generate like a SCREENPLAY with SPOKEN DIALOGUE:
+
+1. ACTION (2-3 sentences): 
+
+IF 2+ CHARACTERS: Write dialogue like this:
+Measurer: "3.7 meters between us."
+Tuesday: "Between what?"
+Measurer: "You and the truth."
+
+OR like this:
+"Have you lost anything?" Collector asks. Tuesday looks at the suitcase. "Not yet."
+
+ACTUAL QUOTED WORDS. Not summaries.
+
+NEVER EVER write: "Words are exchanged" / "They talk" / "They speak" / "Conversation happens"
+You are writing DIALOGUE not describing that dialogue happened.
+
+Keep it SHORT (2-8 words per line). Weird is good.
+
+2. MATERIAL DETAILS (1 sentence): Colors (pink/aqua/yellow/green/white preferred), one pattern. Keep minimal.
+
+3. EMOTIONAL TEMPERATURE: tense, exuberant, uncertain, charged, melancholic, aggressive, tender, ritual, or ruptured
+
+IF YOU WRITE "WORDS ARE EXCHANGED" OR "THEY TALK" YOU HAVE FAILED. Write actual dialogue with quotation marks.
+
+Format as JSON:
+{{
+  "action": "...",
+  "material_details": "...",
+  "emotional_temperature": "..."
+}}
+"""
+        return prompt
+    
+    def _get_system_prompt(self) -> str:
+        """System prompt for LLM."""
+        return """You are writing a surreal screenplay. Characters MUST speak actual dialogue when together.
+
+CRITICAL: Never write "words are exchanged" or "they talk" - write the ACTUAL WORDS IN QUOTES.
+
+Example of CORRECT format:
+Measurer: "2.3 meters between us."
+Tuesday: "To what?"
+Measurer: "The truth and your suitcase."
+
+Write lean and specific. Think: Nabokov's precision meets accessible prose. Never overwrought, never romance novel.
+
+The world (like Delicatessen meets fashion editorial):
+- Bikers in elaborate embroidered clothing (nonsensical patterns, formal)
+- Motorcycles that are horses, horses that are motorcycles (sometimes both, sometimes neither)
+- Real and prosthetic beards (groomed, indistinguishable)
+- Sharp tailoring, Thom Browne-like formality applied absurdly
+- Animals externalize their companions' emotions
+- Cinematic/photographic quality, not painted
+- Pink, aqua, yellow, green palette (NOT desert browns)
+
+Write with restraint:
+- SHORT sentences when possible
+- ONE specific detail, not three adjectives
+- Include dialogue when characters interact (use quotes)
+- Strange is normal, no explanation
+- Specific materials (embroidery pattern, stripe width, beard texture)
+- What someone would see, economically described
+- Present tense, direct
+
+Example of good: "The figure in navy with gold braid sits on the motorcycle. Or the horse. The beard is styled."
+Example of bad: "The tall, weathered figure in the carefully tailored navy suit adorned with gleaming gold braid..."
+
+Focus: gesture, dialogue, pattern, color. Keep it lean."""
+    
+    def _parse_llm_response(self, response: str) -> tuple[str, str, EmotionalTemperature]:
+        """Parse LLM JSON response."""
+        try:
+            # Try to parse as JSON
+            if "{" in response:
+                json_start = response.index("{")
+                json_end = response.rindex("}") + 1
+                json_str = response[json_start:json_end]
+                data = json.loads(json_str)
+                
+                action = data.get("action", "")
+                material = data.get("material_details", "")
+                temp_str = data.get("emotional_temperature", "uncertain").lower()
+                
+                # Map to EmotionalTemperature enum
+                temp_mapping = {
+                    "tense": EmotionalTemperature.TENSE,
+                    "exuberant": EmotionalTemperature.EXUBERANT,
+                    "uncertain": EmotionalTemperature.UNCERTAIN,
+                    "charged": EmotionalTemperature.CHARGED,
+                    "melancholic": EmotionalTemperature.MELANCHOLIC,
+                    "playful": EmotionalTemperature.PLAYFUL,
+                    "aggressive": EmotionalTemperature.AGGRESSIVE,
+                    "tender": EmotionalTemperature.TENDER,
+                    "ritual": EmotionalTemperature.RITUAL,
+                    "ruptured": EmotionalTemperature.RUPTURED
+                }
+                
+                temp = temp_mapping.get(temp_str, EmotionalTemperature.UNCERTAIN)
+                
+                return action, material, temp
+        except:
+            pass
+        
+        # Fallback parsing
+        lines = response.strip().split("\n")
+        action = lines[0] if lines else ""
+        material = lines[1] if len(lines) > 1 else ""
+        return action, material, EmotionalTemperature.UNCERTAIN
+    
+    def _generate_with_template(
+        self,
+        interaction_type: InteractionType,
+        location: Location,
+        characters: List[Character],
+        action_context: str,
+        time_of_day: str,
+        weather: str
+    ) -> tuple[str, str, EmotionalTemperature]:
+        """Generate description using templates (fallback when no LLM)."""
+        
+        import random
+        
+        # Build action description from templates
+        char_names = [c.name for c in characters]
+        animals = [c.animal_companion.name for c in characters]
+        
+        if interaction_type == InteractionType.CHARACTER_TO_CHARACTER:
+            actions = [
+                f"{char_names[0]} approaches {char_names[1] if len(char_names) > 1 else 'the space'}. Their postures suggest tension. {animals[0]} watches from a distance.",
+                f"{char_names[0]} and {char_names[1] if len(char_names) > 1 else 'another figure'} stand facing each other. The space between them feels charged. Silence holds.",
+                f"Words are exchanged between {char_names[0]} and {char_names[1] if len(char_names) > 1 else 'another'}. {animals[0]} shifts position, uneasy."
+            ]
+        elif interaction_type == InteractionType.CHARACTER_TO_ANIMAL:
+            actions = [
+                f"{char_names[0]} reaches toward {animals[0]}. The animal's response is uncertain. A moment of contact, then separation.",
+                f"{animals[0]} circles {char_names[0]}. The human stands still, waiting. Connection hovers, unresolved.",
+                f"{char_names[0]}'s hands move over {animals[0]}'s form. The gesture could be care or control. The animal endures."
+            ]
+        elif interaction_type == InteractionType.OBSERVATION:
+            actions = [
+                f"{char_names[0]} stands motionless in the space. {animals[0]} nearby, equally still. Time seems suspended.",
+                f"Nothing happens. {char_names[0]} and {animals[0]} occupy the space without action. Presence itself becomes the event.",
+                f"{char_names[0]} watches the horizon. {animals[0]} grazes or rests. The quality of waiting intensifies."
+            ]
+        else:
+            actions = [
+                f"{char_names[0]} interacts with {location.objects_present[0] if location.objects_present else 'the environment'}. {action_context}",
+                f"Movement in the space. {char_names[0]} and {animals[0]} navigate the terrain. {action_context}"
+            ]
+        
+        action = random.choice(actions)
+        
+        # Material details
+        materials = [
+            f"{location.lighting_quality}. Colors muted by {weather}. {random.choice(location.objects_present) if location.objects_present else 'The ground'} catches the eye.",
+            f"The light is {time_of_day}. Shadows {random.choice(['long', 'sharp', 'soft', 'harsh'])}. Dust visible in the air.",
+            f"{random.choice(characters).physical_description[:50]}... against the backdrop of {location.name}."
+        ]
+        
+        material = random.choice(materials)
+        
+        # Emotional temperature based on characters' states
+        avg_intensity = sum(c.emotional_intensity for c in characters) / len(characters)
+        
+        if avg_intensity > 0.7:
+            temp = random.choice([EmotionalTemperature.TENSE, EmotionalTemperature.CHARGED, 
+                                EmotionalTemperature.AGGRESSIVE])
+        elif avg_intensity < 0.3:
+            temp = random.choice([EmotionalTemperature.UNCERTAIN, EmotionalTemperature.MELANCHOLIC])
+        else:
+            temp = random.choice([EmotionalTemperature.UNCERTAIN, EmotionalTemperature.TENDER,
+                                EmotionalTemperature.PLAYFUL])
+        
+        return action, material, temp
+

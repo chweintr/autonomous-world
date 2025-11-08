@@ -1,0 +1,26 @@
+{
+  "id": "loc_rooftop",
+  "name": "The Rooftop",
+  "description": "Flat roof of a two-story building, accessed by external stairs. Partially enclosed by a low wall. Wide view of surrounding territory. A place for watching.",
+  "lighting_quality": "Elevated and clear. First to catch sunrise, last to lose sunset. Moon closer.",
+  "temperature_range": "Wind-cooled during day, cold at night. No stored heat.",
+  "acoustic_quality": "Sound from below drifts up. Wind constant. Feeling of being above it all.",
+  "objects_present": [
+    "Folding chair (metal, rusted)",
+    "Bottles (empty, arranged in a line)",
+    "Blanket (wadded in corner)",
+    "Telescope (broken, no lens)",
+    "Bird feathers scattered about"
+  ],
+  "architectural_features": [
+    "Low wall around perimeter",
+    "External stairs (metal, creaking)",
+    "Ventilation shaft (no longer functional)",
+    "Corner alcove (slight shelter from wind)"
+  ],
+  "atmosphere": "Solitary and observational. A space for distance and perspective.",
+  "current_time": "dusk",
+  "current_weather": "clear"
+}
+
+

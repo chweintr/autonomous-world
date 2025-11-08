@@ -1,0 +1,32 @@
+{
+  "id": "bird_gatherer",
+  "name": "Bird Gatherer",
+  "archetype": "The Bird Gatherer",
+  "physical_description": "Embroidered vest—pink and yellow, nonsensical floral patterns. Work pants. Gloves with fingertips cut off. Hair pulled back with blue cord. Moves slowly. Speaks to birds more than people. Gender ambiguous, age uncertain.",
+  "backstory": "No one remembers when they arrived. The birds came with them, or they came with the birds. Hard to say. Works on motorcycles. Repairs what's broken. Gathers birds. The three things seem related but aren't.",
+  "motivational_drivers": [
+    "Compulsion to call and gather birds",
+    "Need to repair broken mechanical things",
+    "Avoidance of explaining why birds gather",
+    "Desire to maintain stillness while everything circles",
+    "When asked why birds come, responds: 'They just do'",
+    "Offers to repair things that aren't broken: 'I could fix that'"
+  ],
+  "relationships": {
+    "witness": "Easy proximity. Neither demands explanation from the other.",
+    "knows_too_much": "Suspicion. The Knowing One asks why birds come. Bird Gatherer doesn't answer.",
+    "mechanic_many_roles": "Works alongside often. Both repair. Different materials."
+  },
+  "animal_companion": {
+    "species": "pig",
+    "name": "Three pink pigs—Bracket, Spindle, Moth",
+    "description": "Three pigs, pink and white. Medium-sized. They circle when Bird Gatherer is anxious. Stand still when calm. Paradox: gathers birds, followed by pigs.",
+    "externalized_impulse": "Anxiety and need for grounding. Birds fly away. Pigs stay. The tension between.",
+    "temperament": "Alert, circling, grounding",
+    "current_state": "neutral"
+  },
+  "emotional_state": "calm",
+  "current_location": null,
+  "emotional_intensity": 0.3
+}
+

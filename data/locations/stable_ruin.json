@@ -1,0 +1,26 @@
+{
+  "id": "loc_stable",
+  "name": "Stable Ruin",
+  "description": "Remains of a stable—wooden stalls half-collapsed, roof mostly gone. Smell of old hay and leather. Animals shelter here but it's not maintained.",
+  "lighting_quality": "Dappled through broken roof. Shadows shift with sun. Dark corners.",
+  "temperature_range": "Moderate—wood and remaining roof provide some shelter.",
+  "acoustic_quality": "Creaking wood. Animal sounds amplified. Intimate despite size.",
+  "objects_present": [
+    "Rotting hay bales",
+    "Broken harnesses hanging from nails",
+    "Water trough (cracked, leaking)",
+    "Shovel with broken handle",
+    "Saddle frame (leather stripped away)"
+  ],
+  "architectural_features": [
+    "Wooden stalls (half-collapsed)",
+    "Exposed beams overhead",
+    "Partial roof (corrugated metal, rusted)",
+    "Wide doorway (door long gone)"
+  ],
+  "atmosphere": "Haunted by former purpose. Comfort and decay intertwined.",
+  "current_time": "afternoon",
+  "current_weather": "clear"
+}
+
+

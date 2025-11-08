@@ -1,0 +1,25 @@
+{
+  "id": "loc_bonfire",
+  "name": "Bonfire Site",
+  "description": "A clearing in the desert with a permanent fire pit ringed by stones. Scorched earth spreads from the center. Dead wood stacked to one side. A place of gathering and ritual.",
+  "lighting_quality": "Flickering and dynamic. Firelight throws moving shadows. Smoke obscures and reveals.",
+  "temperature_range": "Hot near fire, cold beyond its circle. Sharp temperature gradient creates wind.",
+  "acoustic_quality": "Crackling fire dominates. Voices must compete or pause. Sound rises upward.",
+  "objects_present": [
+    "Blackened fire pit with ash",
+    "Stack of mesquite and sage wood",
+    "Scattered sitting stones in rough circle",
+    "Burned offerings (unidentifiable)",
+    "Tin cups hanging from hooks on a post"
+  ],
+  "architectural_features": [
+    "Stone ring (fire pit)",
+    "Wooden post with iron hooks",
+    "Flat rock (altar or table)"
+  ],
+  "atmosphere": "Ceremonial. A space between control and wildness.",
+  "current_time": "night",
+  "current_weather": "clear"
+}
+
+

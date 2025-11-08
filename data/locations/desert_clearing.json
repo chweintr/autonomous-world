@@ -1,0 +1,21 @@
+{
+  "id": "loc_desert_clearing",
+  "name": "Desert Clearing",
+  "description": "Open space where nothing grows. Just packed sand and scattered stones. Horizon visible in all directions. No shelter, no shade, no markers.",
+  "lighting_quality": "Overwhelming. Sun or stars, nothing diffuses the light. Everything is exposed.",
+  "temperature_range": "Extreme in both directions. Hottest and coldest location.",
+  "acoustic_quality": "Wind dominates. Voices get stolen. Silence is heavy.",
+  "objects_present": [
+    "Scattered stones (some stacked, unclear by whom)",
+    "Animal bones (bleached white)",
+    "Single wooden post (purpose unclear, no other structures)"
+  ],
+  "architectural_features": [
+    "None—pure landscape"
+  ],
+  "atmosphere": "Austere and honest. A space that offers nothing but itself.",
+  "current_time": "dawn",
+  "current_weather": "clear"
+}
+
+

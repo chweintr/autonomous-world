@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous World System</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Autonomous World System</h1>
+            <p class="subtitle">A generative engine for visual art production</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Control Panel -->
+            <div class="panel control-panel">
+                <h2>Control Panel</h2>
+                
+                <div class="section">
+                    <h3>Seed Scenario</h3>
+                    <div id="character-placements">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                    <button onclick="seedScenario()" class="btn btn-primary">Seed Scenario</button>
+                </div>
+
+                <div class="section">
+                    <h3>Simulation Parameters</h3>
+                    
+                    <div class="param">
+                        <label>Autonomy Level: <span id="autonomy-value">0.75</span></label>
+                        <input type="range" id="autonomy" min="0" max="1" step="0.05" value="0.75" 
+                               oninput="document.getElementById('autonomy-value').textContent = this.value">
+                    </div>
+
+                    <div class="param">
+                        <label>Randomness: <span id="randomness-value">0.25</span></label>
+                        <input type="range" id="randomness" min="0" max="1" step="0.05" value="0.25"
+                               oninput="document.getElementById('randomness-value').textContent = this.value">
+                    </div>
+
+                    <div class="param">
+                        <label>Interaction Density:</label>
+                        <select id="density">
+                            <option value="sparse">Sparse</option>
+                            <option value="moderate" selected>Moderate</option>
+                            <option value="dense">Dense</option>
+                        </select>
+                    </div>
+
+                    <div class="param">
+                        <label>Duration (minutes):</label>
+                        <input type="number" id="duration" value="60" min="5" max="1440">
+                    </div>
+
+                    <div class="param">
+                        <label>
+                            <input type="checkbox" id="use-llm">
+                            Use LLM for descriptions (requires API key)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <button onclick="runSimulation()" class="btn btn-success" id="run-btn">Run Simulation</button>
+                    <button onclick="saveSession()" class="btn btn-secondary">Save Session</button>
+                    <button onclick="resetSimulation()" class="btn btn-warning">Reset</button>
+                </div>
+
+                <div class="section">
+                    <h3>Status</h3>
+                    <div id="status">
+                        <p>Not initialized</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Field Notes Display -->
+            <div class="panel field-notes-panel">
+                <h2>Field Notes</h2>
+                <div id="field-notes" class="field-notes-container">
+                    <p class="placeholder">Field notes will appear here after running the simulation...</p>
+                </div>
+            </div>
+
+            <!-- Paintable Moments -->
+            <div class="panel paintable-panel">
+                <h2>Paintable Moments</h2>
+                <button onclick="extractPaintableMoments()" class="btn btn-primary">Extract Best Moments</button>
+                <div id="paintable-moments" class="paintable-container">
+                    <p class="placeholder">Painting prompts will appear here...</p>
+                </div>
+            </div>
+
+            <!-- Emergence Patterns -->
+            <div class="panel emergence-panel">
+                <h2>Emergence Patterns</h2>
+                <button onclick="loadEmergenceReport()" class="btn btn-secondary">Generate Report</button>
+                <div id="emergence-report" class="emergence-container">
+                    <p class="placeholder">Pattern analysis will appear here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
+

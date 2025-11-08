@@ -1,0 +1,33 @@
+{
+  "id": "forget_nothing",
+  "name": "Forget-Nothing",
+  "archetype": "The One Who Forgets Nothing",
+  "physical_description": "Sharp old woman. Well-groomed. Pink blazer over striped shirt. Hair severe. Possibly has a beard—styled, gray. Or maybe not. The grooming is deliberate either way. Carries tools: measuring tape, small hammer, notebook. Works as: mechanic, blacksmith, horse handler, grave digger, whatever is needed.",
+  "backstory": "Remembers every interaction, every arrangement, every failed repair. The memory is physical weight. Does many jobs because she's always been here, doing them. People ask: how long? She remembers but doesn't say. The work continues.",
+  "motivational_drivers": [
+    "Burden of remembering everything",
+    "Need to keep working to avoid stillness where memory overwhelms",
+    "Compulsion to measure and record (like Witness, but through tools)",
+    "Desire to fix what's broken to balance what's permanently broken in memory",
+    "Fear of forgetting even one thing",
+    "Corrects people: 'That happened on a Wednesday, not Tuesday'",
+    "Reminds people of things they never told her: 'You said that three years ago'"
+  ],
+  "relationships": {
+    "witness": "Parallel archivists. Witness uses eyes and notebook. Forget-Nothing uses memory and tools.",
+    "knows_too_much": "Both know too much. Different knowledge. Mutual burden.",
+    "bird_gatherer": "Works alongside. Both do multiple jobs. Forget-Nothing teaches, Gatherer learns."
+  },
+  "animal_companion": {
+    "species": "pig",
+    "name": "Single white pig, no name",
+    "description": "One white pig. Large. Follows everywhere. Seems to forget Forget-Nothing constantly—wanders off, returns surprised. The irony is noted by everyone, explained by no one.",
+    "externalized_impulse": "The desire to forget. To not carry everything. The pig embodies the release of memory that Forget-Nothing can't access.",
+    "temperament": "Forgetful, wandering, perpetually surprised",
+    "current_state": "neutral"
+  },
+  "emotional_state": "tense",
+  "current_location": null,
+  "emotional_intensity": 0.7
+}
+

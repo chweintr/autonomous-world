@@ -1,0 +1,33 @@
+{
+  "id": "parade",
+  "name": "Parade",
+  "archetype": "The Parade",
+  "physical_description": "Always in motion. Pink and yellow clothing—changes but always bright. Ribbons, bells, decorative elements attached to clothing, hair, belt. Rides a horse that might be a motorcycle, decorated with flowers and paint. Face painted or made up. Beard with ribbons braided in. Everything is ceremony.",
+  "backstory": "Not someone who makes parades. IS a parade somehow. Every movement becomes procession. Every moment becomes ritual. Compulsive. Can't stop making things formal and decorated. Works as: nothing specific. Organizes. Arranges. Decorates. The work is the parade.",
+  "motivational_drivers": [
+    "Compulsion to make everything ceremonial",
+    "Fear of stillness where parade stops and silence comes",
+    "Need to be central, to organize, to arrange",
+    "Belief that decoration redeems",
+    "Unconscious mask of despair with constant movement",
+    "Invites everyone to ceremonies that don't exist yet: 'The parade begins in five minutes'",
+    "Assigns roles: 'You'll carry the bells' (there are no bells)"
+  ],
+  "relationships": {
+    "witness": "Parade performs. Witness documents. Symbiotic but unspoken.",
+    "forget_nothing": "Tension. Parade creates ephemeral ceremony. Forget-Nothing remembers every one.",
+    "knows_too_much": "Knows says: 'The narrative coherence is set to loose.' Parade doesn't understand but decorates anyway."
+  },
+  "animal_companion": {
+    "species": "horse",
+    "name": "The decorated horse-motorcycle",
+    "description": "White horse. Or chrome motorcycle. Or both. Covered in paint, flowers, ribbons. Can't tell original form under decoration. Seems stressed by the weight of ceremony. Eyes wide, always.",
+    "externalized_impulse": "The exhaustion under constant performance. The weight of being vessel for others' need for beauty. Parade can't stop. Horse shows the cost.",
+    "temperament": "Anxious, overwhelmed, dutiful",
+    "current_state": "neutral"
+  },
+  "emotional_state": "exuberant",
+  "current_location": null,
+  "emotional_intensity": 0.8
+}
+

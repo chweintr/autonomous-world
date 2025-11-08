@@ -1,0 +1,27 @@
+{
+  "id": "loc_courtyard",
+  "name": "The Courtyard",
+  "description": "A walled square of cracked concrete surrounded by remnants of adobe structures. An archway on the east side, half-collapsed. Desert creeps in through gaps in the walls—salt grass and thorny shrubs.",
+  "lighting_quality": "Hard shadows and bright patches. At dusk, the walls glow pink-orange. At night, moon creates stark contrasts.",
+  "temperature_range": "Extreme—baking during day, cold at night. Walls radiate stored heat after sunset.",
+  "acoustic_quality": "Trapped and echoing. Voices bounce off walls. Hoofbeats sound amplified.",
+  "objects_present": [
+    "White rope coiled near archway",
+    "Rusted metal chair tipped on its side",
+    "Clay water trough, half-full",
+    "Scattered bottles (green glass, unlabeled)",
+    "Pile of sun-bleached fabric"
+  ],
+  "architectural_features": [
+    "Collapsed archway (east)",
+    "Adobe walls with geometric crack patterns",
+    "Broken tile embedded in concrete",
+    "Iron ring mounted in north wall",
+    "Wooden beam jutting from south wall"
+  ],
+  "atmosphere": "Confrontational. A space that forces proximity and interaction.",
+  "current_time": "midday",
+  "current_weather": "clear"
+}
+
+

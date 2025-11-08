@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-theme="noir">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Autonomous World — Studio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@300;400;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/css/studio.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="glyph" aria-hidden="true">◎</span>
+      <span class="title">Autonomous World — Studio</span>
+    </div>
+    <div class="toolbar">
+      <label for="theme" class="sr-only">Theme</label>
+      <select id="theme" title="Theme">
+        <option value="noir" selected>Noir</option>
+        <option value="sand">Sand</option>
+        <option value="aqua">Aqua</option>
+      </select>
+      <div id="fps" class="fps" aria-live="polite" title="Status">Ready</div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT: Controls -->
+    <aside class="panel" id="controls">
+      <section class="section">
+        <h2>Seed Scenario</h2>
+        <div id="character-placements" class="form">
+          <!-- Populated by JavaScript -->
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <h3>Parameters</h3>
+        <div class="param-grid">
+          <label for="duration">Duration (min)</label>
+          <input type="number" id="duration" value="10" min="5" max="180" />
+          
+          <label for="density">Density</label>
+          <select id="density">
+            <option value="sparse">Sparse</option>
+            <option value="moderate">Moderate</option>
+            <option value="dense" selected>Dense</option>
+          </select>
+
+          <label for="autonomy">Autonomy</label>
+          <input type="range" id="autonomy" min="0" max="1" step="0.05" value="0.75" 
+                 style="width: 100%; accent-color: var(--accent);" />
+
+          <label for="randomness">Randomness</label>
+          <input type="range" id="randomness" min="0" max="1" step="0.05" value="0.25"
+                 style="width: 100%; accent-color: var(--accent-2);" />
+        </div>
+        
+        <label class="check">
+          <input type="checkbox" id="useLLM" checked />
+          <span>Use LLM for vivid descriptions</span>
+        </label>
+
+        <button id="seed" class="btn" style="width: 100%; margin-bottom: 8px;">Seed Scenario</button>
+
+        <div class="btn-row">
+          <button id="run" class="btn primary">Run</button>
+          <button id="save" class="btn">Save</button>
+          <button id="reset" class="btn ghost">Reset</button>
+        </div>
+      </section>
+
+      <section class="section status">
+        <h3>Status</h3>
+        <div class="kv"><span>Status:</span><strong id="statusVal">Not initialized</strong></div>
+        <div class="kv"><span>Interactions:</span><strong id="interactionCount">0</strong></div>
+        <hr>
+        <h4>Character States</h4>
+        <ul id="charStates" class="states">
+          <li>Awaiting scenario...</li>
+        </ul>
+      </section>
+    </aside>
+
+    <!-- CENTER: Field Notes -->
+    <section class="panel notes" id="notesPanel">
+      <div class="section">
+        <div class="scene-bar">
+          <div class="stack">
+            <div class="scene-label">Field Notes</div>
+          </div>
+        </div>
+      </div>
+
+      <ol id="notes" class="notes-feed">
+        <li style="color: var(--muted); text-align: center; padding: 40px; font-style: italic;">
+          Field notes will appear here after running the simulation...
+        </li>
+      </ol>
+    </section>
+
+    <!-- RIGHT: Paintable Moments + Emergence -->
+    <aside class="panel report" id="reportPanel">
+      <section class="section">
+        <div class="section-head">
+          <h2>Paintable Moments</h2>
+          <button id="extractMoments" class="btn small ghost">Extract</button>
+        </div>
+        <div class="report-body" id="paintableBody">
+          <div style="color: var(--muted); text-align: center; padding: 20px; font-style: italic;">
+            Click "Extract" after running simulation
+          </div>
+        </div>
+      </section>
+
+      <hr style="margin: 12px 18px;">
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Emergence</h2>
+          <button id="genReport" class="btn small ghost">Analyze</button>
+        </div>
+        <div class="report-body" id="reportBody">
+          <div style="color: var(--muted); text-align: center; padding: 20px; font-style: italic;">
+            Pattern analysis will appear here
+          </div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="/static/js/studio.js"></script>
+</body>
+</html>
+
+

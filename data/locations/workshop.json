@@ -1,0 +1,29 @@
+{
+  "id": "loc_workshop",
+  "name": "The Workshop",
+  "description": "Enclosed workspace with tools, materials, and projects in various states. Organized chaos. Smells of oil, leather, and sawdust. A place of making and repair.",
+  "lighting_quality": "Filtered through dirty windows. Work lamps create pools of focused light. Shadows in corners.",
+  "temperature_range": "Moderate to warm—work generates heat, minimal ventilation.",
+  "acoustic_quality": "Absorbing. Tools clanking, materials shuffling. Intimate and industrious.",
+  "objects_present": [
+    "Workbench covered with tools",
+    "Leather scraps and fabric bolts",
+    "Jars of nails, screws, bolts",
+    "Half-finished harness on hook",
+    "Rope in various stages of braiding",
+    "Paint and brushes",
+    "Coffee can full of pencils"
+  ],
+  "architectural_features": [
+    "Workbench along one wall",
+    "Pegboard with hanging tools",
+    "Shelving (homemade, cluttered)",
+    "Dirty windows (north-facing)",
+    "Concrete floor (stained)"
+  ],
+  "atmosphere": "Productive and contained. A space of agency and craft.",
+  "current_time": "afternoon",
+  "current_weather": "clear"
+}
+
+

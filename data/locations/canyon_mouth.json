@@ -1,0 +1,26 @@
+{
+  "id": "loc_canyon_mouth",
+  "name": "Canyon Mouth",
+  "description": "Where a narrow canyon opens into desert. Red rock walls rise on either side. Echo chamber effect. Cool air flows out from the canyon's depth.",
+  "lighting_quality": "Dramatic. Walls catch and hold color—red, orange, purple depending on time. Shadows are dense.",
+  "temperature_range": "Cool—canyon creates shade and channels cold air from depth.",
+  "acoustic_quality": "Amplifying echo. Every sound repeats. Whispers become shouts.",
+  "objects_present": [
+    "Smooth stones (water-carved, now dry)",
+    "Rope swing hanging from outcropping",
+    "Fire ring (recent use)",
+    "Sleeping roll (abandoned or hidden)",
+    "Petroglyphs on lower walls (ancient, pre-existing)"
+  ],
+  "architectural_features": [
+    "Red rock walls (natural)",
+    "Narrow passage leading deeper into canyon",
+    "Overhanging rock ledges",
+    "Petroglyphs"
+  ],
+  "atmosphere": "Ancient and resonant. A space that remembers.",
+  "current_time": "afternoon",
+  "current_weather": "clear"
+}
+
+

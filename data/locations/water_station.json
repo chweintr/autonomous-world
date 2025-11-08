@@ -1,0 +1,25 @@
+{
+  "id": "loc_water_station",
+  "name": "Water Station",
+  "description": "A pump and concrete basin fed by underground source. The only reliable water for miles. Muddy ground around it. Always occupied or recently visited.",
+  "lighting_quality": "Functional and unglamorous. Harsh midday light shows every detail. Mud reflects light strangely.",
+  "temperature_range": "Cool near water, hot elsewhere. Evaporation creates microclimate.",
+  "acoustic_quality": "Water dripping, splashing. Mud sucking at boots. Animals drinking. Wet sounds.",
+  "objects_present": [
+    "Manual pump (iron, well-maintained)",
+    "Concrete basin (cracked but functional)",
+    "Buckets (various sizes, shared)",
+    "Ropes and pulleys",
+    "Muddy ground with hoof prints and boot prints layered"
+  ],
+  "architectural_features": [
+    "Pump structure",
+    "Concrete basin",
+    "Drainage channels (ineffective)"
+  ],
+  "atmosphere": "Necessary and communal. A space that enforces cooperation.",
+  "current_time": "morning",
+  "current_weather": "clear"
+}
+
+

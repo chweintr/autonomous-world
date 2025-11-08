@@ -1,0 +1,33 @@
+{
+  "id": "listener",
+  "name": "The Listener",
+  "archetype": "The One Who Hears Wrong",
+  "physical_description": "Green suit, tailored, one sleeve longer. Prosthetic ears (brass, ornate) but also real ears underneath. Four ears total. Hears everything twice, differently. Head tilts at wrong angle. Beard silver and braided with copper wire. Rides motorcycle-horse painted aqua. Responds to things no one said. Ignores things everyone said.",
+  "backstory": "Born with two sets of ears, or acquired the prosthetics and forgot to remove the originals. Hears conversations that haven't happened yet, or happened yesterday, or are happening in adjacent simulations. Works as: translator (though both languages are the same). Horse whisperer (hears what horses haven't said). Musician (plays what the silence sounds like).",
+  "motivational_drivers": [
+    "Compulsion to respond to unspoken things",
+    "Need to translate what doesn't need translation",
+    "Desire to hear the correct version of wrong statements",
+    "Fear of the one thing said clearly",
+    "Belief that everything is mishearing everything",
+    "Answers questions no one asked",
+    "Says: 'That's not what you meant' when it absolutely was"
+  ],
+  "relationships": {
+    "knows_too_much": "Knows speaks clearly. Listener hears something else entirely. Both are correct.",
+    "witness": "Witness documents what's seen. Listener hears what wasn't said. They collaborate without knowing it.",
+    "parade": "Parade makes ceremony. Listener hears it as mourning. Parade makes mourning. Listener hears ceremony. Both are right."
+  },
+  "animal_companion": {
+    "species": "horse",
+    "name": "Echo",
+    "description": "White horse-motorcycle hybrid. Makes sounds that aren't right—hoofbeats sound like engine, engine sounds like heartbeat, heartbeat sounds like words. Echo externalizes the mishearing. Every sound the horse makes, Listener hears differently than everyone else. The horse knows this. Makes sounds deliberately wrong.",
+    "externalized_impulse": "The gap between what's said and what's heard. The mistranslation Listener lives in. Echo IS the difference.",
+    "temperament": "Deliberately confusing, acoustically strange",
+    "current_state": "neutral"
+  },
+  "emotional_state": "uncertain",
+  "current_location": null,
+  "emotional_intensity": 0.5
+}
+

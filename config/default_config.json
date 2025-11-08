@@ -1,0 +1,34 @@
+{
+  "simulation": {
+    "autonomy_level": 0.75,
+    "time_compression": 60,
+    "interaction_density": "dense",
+    "narrative_coherence": "loose",
+    "randomness": 0.25
+  },
+  "llm": {
+    "enabled": true,
+    "provider": "openai",
+    "model": "gpt-4o",
+    "api_key_env_var": "OPENAI_API_KEY",
+    "temperature": 0.8,
+    "max_tokens": 300
+  },
+  "output": {
+    "field_note_format": "markdown",
+    "save_directory": "./data/sessions",
+    "auto_save": false,
+    "auto_save_interval_minutes": 30
+  },
+  "paths": {
+    "characters_dir": "./data/characters",
+    "locations_dir": "./data/locations",
+    "sessions_dir": "./data/sessions"
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 5000,
+    "debug": true
+  }
+}
+

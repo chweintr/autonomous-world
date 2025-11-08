@@ -1,0 +1,25 @@
+{
+  "id": "loc_parade_ground",
+  "name": "Parade Ground",
+  "description": "A long, flat expanse of hard-packed earth. Faded paint marks still visible—lines and boundaries from some former purpose. Posts with tattered ribbons mark a processional route.",
+  "lighting_quality": "Exposed and bright. No shade. Sky dominates. Dust catches light.",
+  "temperature_range": "Hot and dry. Heat rises in waves from the ground.",
+  "acoustic_quality": "Open and dispersing. Sound carries far but weakens. Wind interferes.",
+  "objects_present": [
+    "Posts with ribbons (pink, yellow, white—faded)",
+    "Drums (two large, one small, sitting in the sun)",
+    "Flags on poles (colors bleached to pastels)",
+    "Scattered flower petals (dried)",
+    "Wooden platform (low, unstable)"
+  ],
+  "architectural_features": [
+    "Faded boundary lines painted on ground",
+    "Posts marking processional route",
+    "Low wooden platform (stage or altar)"
+  ],
+  "atmosphere": "Performative and exposed. A space demanding spectacle.",
+  "current_time": "morning",
+  "current_weather": "clear"
+}
+
+

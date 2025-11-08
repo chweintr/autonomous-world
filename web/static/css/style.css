@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #f5f5f0;
+    color: #2a2a2a;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 2px solid #2a2a2a;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1em;
+    color: #666;
+    font-style: italic;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+    border: 2px solid #2a2a2a;
+    padding: 20px;
+}
+
+.control-panel {
+    grid-row: 1 / 3;
+}
+
+.field-notes-panel {
+    min-height: 500px;
+}
+
+.paintable-panel {
+    min-height: 400px;
+}
+
+.emergence-panel {
+    min-height: 300px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.param {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #2a2a2a;
+    background: #f5f5f0;
+    font-family: 'Courier New', monospace;
+}
+
+.character-placement {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.character-placement label {
+    flex: 1;
+    margin: 0;
+    font-weight: normal;
+    font-size: 0.85em;
+}
+
+.character-placement select {
+    flex: 1;
+    padding: 5px;
+    font-size: 0.85em;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: 2px solid #2a2a2a;
+    background: white;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: all 0.2s;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    background: #2a2a2a;
+    color: white;
+}
+
+.btn-primary {
+    background: #4a4a4a;
+    color: white;
+}
+
+.btn-success {
+    background: #2a5a2a;
+    color: white;
+}
+
+.btn-secondary {
+    background: #5a5a5a;
+    color: white;
+}
+
+.btn-warning {
+    background: #8a6a2a;
+    color: white;
+}
+
+#status {
+    padding: 15px;
+    background: #f5f5f0;
+    border: 1px solid #2a2a2a;
+    font-size: 0.9em;
+}
+
+.field-notes-container,
+.emergence-container {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #fafaf5;
+}
+
+.field-note {
+    border-left: 3px solid #2a2a2a;
+    padding-left: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.field-note:last-child {
+    border-bottom: none;
+}
+
+.field-note-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.field-note-action {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.field-note-material {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.field-note-temperature {
+    font-weight: bold;
+    color: #2a2a2a;
+    font-size: 0.9em;
+}
+
+.emergence-badge {
+    display: inline-block;
+    background: #ff6b6b;
+    color: white;
+    padding: 2px 8px;
+    font-size: 0.75em;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.paintable-container {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #fafaf5;
+}
+
+.paintable-moment {
+    border: 2px solid #2a2a2a;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: white;
+}
+
+.paintable-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.paintable-section {
+    margin-bottom: 10px;
+}
+
+.paintable-section strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.paintable-prompt {
+    background: #f5f5f0;
+    padding: 10px;
+    border-left: 3px solid #2a2a2a;
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.placeholder {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 40px;
+}
+
+pre {
+    white-space: pre-wrap;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+}
+

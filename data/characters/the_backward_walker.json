@@ -1,0 +1,33 @@
+{
+  "id": "backward",
+  "name": "Backward",
+  "archetype": "The Backward Walker",
+  "physical_description": "Walks backward exclusively. Has for years. Navy coveralls, yellow boots. Beard braided with mirrors (small, reflecting). Sees where they've been, not where they're going. Surprisingly doesn't collide with things. Or does, and doesn't mind. Hands always behind back. Face permanently turned to the past.",
+  "backstory": "Started walking backward after seeing something ahead. What? Won't say. Can't say. Turned around and kept walking. Repairs motorcycles while walking backward away from them. It works. Grave digger who backs into graves. Fills them in while leaving. Everything done in reverse. Forward motion through backward walking.",
+  "motivational_drivers": [
+    "Refusal to see what's coming",
+    "Dedication to what's been left behind",
+    "Belief that backing up is the only honest direction",
+    "Compulsion to repair while retreating",
+    "Fear of turning around, even once",
+    "Speaks about the past as if it's ahead: 'I'm heading toward yesterday'",
+    "Gives directions backward: 'Go forward to get behind where you were'"
+  ],
+  "relationships": {
+    "witness": "Witness watches forward. Backward watches back. They face opposite directions during conversations. Both think they're facing the right way.",
+    "tuesday": "Tuesday asked about the backward walking once. Backward answered by walking further back. Tuesday understood perfectly.",
+    "measurer": "Measurer tried to measure the distance Backward has walked. The number was negative. Measurer's ledger has a hole in that page now."
+  },
+  "animal_companion": {
+    "species": "wolf",
+    "name": "Front",
+    "description": "Gray wolf. Walks in front of Backward, facing forward. Sees what Backward won't. Growls at approaching things. Backward never knows what Front growls at. Trusts anyway. The wolf is calm about things behind them, agitated about things ahead. Perfect arrangement.",
+    "externalized_impulse": "The forward gaze Backward refuses. The awareness of what's coming. The vigilance Backward has surrendered.",
+    "temperament": "Alert to future, calm about past",
+    "current_state": "neutral"
+  },
+  "emotional_state": "melancholic",
+  "current_location": null,
+  "emotional_intensity": 0.6
+}
+

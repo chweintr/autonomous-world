@@ -1,0 +1,32 @@
+{
+  "id": "sleeper",
+  "name": "Sleeper",
+  "archetype": "The One Who Sleeps Standing",
+  "physical_description": "Always vertical. Never sits. Sleeps standing with eyes open. Navy and pink striped pajamas worn as formal wear. Slippers (yellow, embroidered with closed eyes). Beard flows downward, never tangled despite sleeping upright. Sometimes asleep mid-conversation. You can tell because responses come 3 seconds delayed. Rides motorcycle lying on tank, somehow still vertical.",
+  "backstory": "Hasn't been horizontal in eleven years. Forgot how to lie down, or refuses to, or physically can't anymore. The reason has been lost to standing sleep. Works as: night watchman (never awake), daytime security (always asleep), guard of nothing in particular. Effective despite sleeping. Or because of it. Sees things in sleep others miss awake.",
+  "motivational_drivers": [
+    "Compulsion to remain vertical",
+    "Fear of horizontal vulnerability",
+    "Need to guard while sleeping",
+    "Belief that standing sleep sees truths waking misses",
+    "Refusal to lie down even once"
+  ],
+  "relationships": {
+    "witness": "Both see. Witness awake, Sleeper dreaming. Same observations, different states.",
+    "backward": "Backward walks away from forward. Sleeper refuses horizontal. Both are refusals. They understand.",
+    "knows_too_much": "Knows says 'You're in sleep mode.' Sleeper responds three seconds later: 'Yes.' Then continues sleeping."
+  },
+  "animal_companion": {
+    "species": "horse",
+    "name": "Pillow",
+    "description": "Horse that never sleeps. White, red-eyed from exhaustion. Stands when Sleeper sleeps. Sleeps standing, like Sleeper, but actually awake. The reversal: human sleeps standing, horse can't sleep at all. Pillow externalizes the wakefulness Sleeper has abandoned.",
+    "externalized_impulse": "The insomnia Sleeper escaped by sleeping standing. The exhaustion. The refusal to rest properly. Pillow can't sleep because Sleeper sleeps wrong.",
+    "temperament": "Exhausted, wakeful, patient",
+    "current_state": "neutral"
+  },
+  "emotional_state": "calm",
+  "current_location": null,
+  "emotional_intensity": 0.2
+}
+
+

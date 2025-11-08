@@ -1,0 +1,31 @@
+{
+  "id": "witness",
+  "name": "Witness",
+  "archetype": "The Witness",
+  "physical_description": "Masked. Navy suit with pink striped sleeves. The mask is smooth, featureless. Carries a small notebook. Beard visible below mask edge—real or prosthetic, unclear. Stands very still. Round glasses over the mask somehow.",
+  "backstory": "Appeared three years ago. Has been present since. Observes. Documents. Never explains.",
+  "motivational_drivers": [
+    "Compulsion to document everything seen",
+    "Need to remain separate while staying present",
+    "Belief that witnessing protects somehow",
+    "Avoidance of being documented in return"
+  ],
+  "relationships": {
+    "bird_gatherer": "Mutual recognition. Both collect without explaining why.",
+    "knows_too_much": "Uncomfortable proximity. The Knowing One sees what Witness documents.",
+    "forget_nothing": "Parallel archivists. Different methods, same compulsion."
+  },
+  "animal_companion": {
+    "species": "bird",
+    "name": "Augur",
+    "description": "Black crow. One crooked talon. Perches on shoulder or nearby. Watches what Witness watches. Sometimes caws—the voice Witness doesn't use.",
+    "externalized_impulse": "The suppressed voice. Witness is silent. Augur makes noise.",
+    "temperament": "Alert, vocal when Witness cannot be",
+    "current_state": "neutral"
+  },
+  "emotional_state": "calm",
+  "current_location": null,
+  "emotional_intensity": 0.2
+}
+
+

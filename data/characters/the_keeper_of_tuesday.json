@@ -1,0 +1,31 @@
+{
+  "id": "tuesday",
+  "name": "Tuesday",
+  "archetype": "The Keeper of Tuesday",
+  "physical_description": "Only appears on Tuesdays. Pink suit, yellow shirt, green tie. Each Tuesday the tie has different embroidery—last Tuesday was bees, this Tuesday is hourglasses. Rides motorcycle that smells like horse. Real beard that looks prosthetic. Carries a suitcase. Never opens it. Never sets it down.",
+  "backstory": "First appeared on a Tuesday seven years ago. Has appeared every Tuesday since. Never Wednesday. Never Monday. The suitcase has been carried for seven years, never opened. People have asked. Tuesday smiles. Works as: whatever is needed on Tuesdays. Blacksmith on first Tuesdays, grave digger on third Tuesdays, bartender on fifth Tuesdays. Months with four Tuesdays, he rests.",
+  "motivational_drivers": [
+    "Adherence to Tuesday as sacred structure",
+    "Need to carry the suitcase without opening it",
+    "Compulsion to smile when asked about the suitcase",
+    "Desire to make each Tuesday different via tie embroidery",
+    "Fear of what happens if he appears on Wednesday"
+  ],
+  "relationships": {
+    "measurer": "Measurer once tried to measure the suitcase. Tuesday moved it. They haven't spoken since.",
+    "parade": "Both make ceremony. Tuesday's is weekly. Parade's is constant. Tension.",
+    "knows_too_much": "Knows once said 'You're a Tuesday subroutine.' Tuesday didn't understand. Still doesn't. Still smiles."
+  },
+  "animal_companion": {
+    "species": "pig",
+    "name": "Seven (there's only one pig)",
+    "description": "Large pink pig. Appears every Tuesday. Same pig or different pig? After seven years, who can say. The pig knows what's in the suitcase. Won't say. Pigs can't talk. Or this one won't.",
+    "externalized_impulse": "The secret in the suitcase. The thing Tuesday carries but won't open. The pig IS what's inside, externalized.",
+    "temperament": "Knowing, silent, patient",
+    "current_state": "neutral"
+  },
+  "emotional_state": "uncertain",
+  "current_location": null,
+  "emotional_intensity": 0.4
+}
+

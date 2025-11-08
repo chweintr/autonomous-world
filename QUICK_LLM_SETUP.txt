@@ -1,0 +1,114 @@
+================================================================================
+  LLM ENABLED! - Quick Setup Instructions
+================================================================================
+
+✓ LLM is now enabled in the configuration
+
+To complete setup and start using it:
+
+OPTION 1: Automated Setup (Easiest)
+────────────────────────────────────────────────────────────────────────────
+  ./setup_llm.sh
+
+  This will guide you through:
+  - Installing OpenAI package
+  - Setting your API key
+  - Testing the connection
+
+
+OPTION 2: Manual Setup (3 Steps)
+────────────────────────────────────────────────────────────────────────────
+
+  STEP 1: Install OpenAI package
+  
+    pip install openai
+
+  STEP 2: Get your API key
+  
+    → Go to: https://platform.openai.com/api-keys
+    → Create a new key (starts with 'sk-')
+    → Copy it
+
+  STEP 3: Set the API key
+  
+    # For zsh (macOS default):
+    echo 'export OPENAI_API_KEY="sk-your-key-here"' >> ~/.zshrc
+    source ~/.zshrc
+    
+    # Or for bash:
+    echo 'export OPENAI_API_KEY="sk-your-key-here"' >> ~/.bashrc
+    source ~/.bashrc
+
+
+THEN: Run the System
+────────────────────────────────────────────────────────────────────────────
+
+  Web Interface:
+    python run.py
+    → Open http://localhost:5000
+    → Check "Use LLM for descriptions"
+    → Run a scenario
+
+  Command Line:
+    python example_scenario.py
+
+
+COST INFORMATION
+────────────────────────────────────────────────────────────────────────────
+
+  GPT-4:
+    • Best quality
+    • ~$0.50-$1.00 per 60-minute simulation (12 interactions)
+  
+  GPT-3.5-Turbo (cheaper alternative):
+    • Good quality
+    • ~$0.05-$0.10 per 60-minute simulation
+    • To use: Edit config/default_config.json, set "model": "gpt-3.5-turbo"
+
+  Template Mode (free):
+    • Uncheck "Use LLM" in web interface
+    • Still works, just less detailed
+
+
+WHAT YOU GET WITH LLM
+────────────────────────────────────────────────────────────────────────────
+
+  Instead of:
+    "Marcus approaches Redline. The animal's response is uncertain."
+
+  You get:
+    "Marcus leans into Redline's neck, his scarred hands gripping the 
+    reins with visible tension. The horse's ears flatten backward, 
+    muscles bunching beneath the saddle..."
+
+  Much better source material for visual art!
+
+
+TROUBLESHOOTING
+────────────────────────────────────────────────────────────────────────────
+
+  "No module named 'openai'":
+    → pip install openai
+
+  "Incorrect API key":
+    → Check: echo $OPENAI_API_KEY
+    → Should show your key (sk-...)
+
+  "Connection failed":
+    → System auto-falls back to templates
+    → Check internet connection
+    → Verify API key has credits
+
+
+MORE INFO
+────────────────────────────────────────────────────────────────────────────
+
+  → Read: LLM_SETUP.md (comprehensive guide)
+  → Read: README.md (full documentation)
+
+
+================================================================================
+Ready to create compelling field notes with AI-enhanced descriptions!
+================================================================================
+
+

@@ -1,0 +1,26 @@
+{
+  "id": "loc_burial_ground",
+  "name": "Burial Ground",
+  "description": "Small cemetery marked by wooden crosses and stone cairns. Some markers have names, most don't. Wildflowers grow here despite desert conditions. Quiet and still.",
+  "lighting_quality": "Soft and diffused. Even harsh sun seems gentler here. Flowers add color.",
+  "temperature_range": "Cool—unexplained microclimate. Always five degrees cooler than surroundings.",
+  "acoustic_quality": "Deeply quiet. Sounds seem to stop at the boundary. Wind doesn't disturb.",
+  "objects_present": [
+    "Wooden crosses (various states of decay)",
+    "Stone cairns",
+    "Wildflowers (blue, yellow, white)",
+    "Glass bottles with flowers (some fresh, some dead)",
+    "Handwritten notes under stones",
+    "Small toys and trinkets"
+  ],
+  "architectural_features": [
+    "Low stone wall marking boundary",
+    "Grave markers",
+    "Flat stones (some carved with names or symbols)"
+  ],
+  "atmosphere": "Peaceful and solemn. A space holding grief and memory.",
+  "current_time": "morning",
+  "current_weather": "clear"
+}
+
+

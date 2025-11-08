@@ -1,0 +1,26 @@
+{
+  "id": "loc_patterned_room",
+  "name": "The Patterned Room",
+  "description": "Interior space in a half-standing building. All four walls covered in geometric patterns—hand-painted stripes, checks, and grids in black, white, and faded red. The floor is clean-swept concrete.",
+  "lighting_quality": "Striped light from gaps in roof. Patterns create optical vibrations. Disorienting.",
+  "temperature_range": "Cool and constant. Stone walls insulate from desert heat.",
+  "acoustic_quality": "Muffled and intimate. Patterns seem to absorb sound.",
+  "objects_present": [
+    "Wooden stool in corner",
+    "Paint cans (dried, cracked)",
+    "Brushes in a jar",
+    "Folded blanket with matching patterns",
+    "Mirror leaning against wall (reflects patterns infinitely)"
+  ],
+  "architectural_features": [
+    "Hand-painted geometric patterns covering all walls",
+    "Gaps in roof (striped light)",
+    "Concrete floor (swept clean)",
+    "Single window (west wall, covered with patterned fabric)"
+  ],
+  "atmosphere": "Hypnotic and claustrophobic. A space that demands attention.",
+  "current_time": "afternoon",
+  "current_weather": "clear"
+}
+
+

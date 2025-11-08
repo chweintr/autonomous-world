@@ -1,0 +1,33 @@
+{
+  "id": "measurer",
+  "name": "Measurer",
+  "archetype": "The One Who Measures",
+  "physical_description": "Aqua blazer over striped shirt—pink and white stripes, precisely 2cm each. Carries measuring tape, always extended. Beard in three exact braids. Prosthetic fingers on left hand (brass, articulated). Stops mid-conversation to measure distances between objects, people, pauses. Writes measurements in air with finger.",
+  "backstory": "Showed up measuring the courtyard. Has been measuring since. Measures gaps, distances, silence duration, beard lengths, pig circumferences. No one knows what the measurements mean. Keeps a ledger. Never shows it. Also shoes horses. Or motorcycles. The distinction stopped mattering after he measured it.",
+  "motivational_drivers": [
+    "Compulsion to quantify the unquantifiable",
+    "Need to create order through measurement",
+    "Fear that unmeasured things disappear",
+    "Desire to measure the space between words",
+    "Secret belief that perfect measurement reveals truth",
+    "Stops conversations to announce measurements: '3.7 meters between us'",
+    "Asks permission to measure people: 'May I measure your hesitation?'"
+  ],
+  "relationships": {
+    "witness": "Both document. Different units. Mutual respect, no conversation.",
+    "knows_too_much": "The One Who Knows says 'Randomness is 0.25 today.' Measurer measures it. Both are right and wrong.",
+    "forget_nothing": "She remembers everything. He measures everything. The archive and the ledger never align."
+  },
+  "animal_companion": {
+    "species": "horse",
+    "name": "No name, just measurements",
+    "description": "White horse. Or maybe gray. Measurer has never finished measuring it to confirm. 14.2 hands at shoulder. 2.3 meters nose to tail. Mane: uncountable. The horse stands perfectly still for measurement, then moves exactly when Measurer looks away.",
+    "externalized_impulse": "The unmeasurable. The thing that won't stay still long enough to quantify. Measurer's fear of the imprecise.",
+    "temperament": "Patient then suddenly mobile",
+    "current_state": "neutral"
+  },
+  "emotional_state": "uncertain",
+  "current_location": null,
+  "emotional_intensity": 0.5
+}
+

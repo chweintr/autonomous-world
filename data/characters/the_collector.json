@@ -1,0 +1,33 @@
+{
+  "id": "collector",
+  "name": "Collector",
+  "archetype": "The Collector of What Falls",
+  "physical_description": "Pockets everywhere—vest with 40 pockets, pants with 20 more. All bulging. Pink vest, aqua shirt, yellow pocket squares (one per pocket). Beard full of small objects—buttons, seeds, pins. Bald head, round glasses. Constantly picking things up. Coins, feathers, dropped words, lost thoughts. Pockets overflow but never empty.",
+  "backstory": "Collects only what falls. Nothing taken, only received. Has been collecting for unknown years. Pockets contain: a button from 1987, a tooth from something, three wedding rings (different marriages), seventeen keys (no locks), a moth (dead), a moth (alive), someone's name (forgotten by owner). Works as: nothing. Or everything. Finding what falls IS the work.",
+  "motivational_drivers": [
+    "Compulsion to catch everything that falls before it hits ground",
+    "Belief that fallen things are messages",
+    "Need to fill every pocket before emptying any",
+    "Desire to return things to owners who don't remember losing them",
+    "Fear of the sound of things hitting ground uncaught",
+    "Wants to ask everyone: 'Have you lost anything?' and return it",
+    "Collects dropped words from conversations, repeats them back later"
+  ],
+  "relationships": {
+    "forget_nothing": "She remembers. He collects what's forgotten. They don't speak but understand.",
+    "parade": "Parade drops things (ribbons, petals, bells). Collector catches them. Parade never notices. Collector never returns them.",
+    "knows_too_much": "Knows said 'You're collecting dropped data.' Collector picked up the sentence. Put it in pocket 23."
+  },
+  "animal_companion": {
+    "species": "bird",
+    "name": "Dozens of birds, no names",
+    "description": "Small birds—sparrows, finches, unnamed species. Dozens. They land on Collector, in pockets, on hat (no hat, but they land there anyway). They pick things from the beard, rearrange pocket contents. Collector never shoos them. Birds never leave. They externalize the constant accumulation.",
+    "externalized_impulse": "The overwhelming multiplication of things. One fallen button becomes dozens of birds. The weight of collection given wings.",
+    "temperament": "Busy, accumulating, rearranging",
+    "current_state": "neutral"
+  },
+  "emotional_state": "calm",
+  "current_location": null,
+  "emotional_intensity": 0.3
+}
+

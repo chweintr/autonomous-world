@@ -1,0 +1,25 @@
+{
+  "id": "loc_crossroads",
+  "name": "The Crossroads",
+  "description": "Where two dirt roads intersect. A dead tree marks the center. Items hang from branches—offerings, messages, warnings. A place of transition and decision.",
+  "lighting_quality": "Exposed but the tree creates one strong shadow that rotates with the sun.",
+  "temperature_range": "Hot, no shelter. Tree is dead and provides minimal shade.",
+  "acoustic_quality": "Open. Wind through dead branches creates clicking sounds. Objects hanging from tree chime softly.",
+  "objects_present": [
+    "Dead tree with hanging objects (bottles, bones, cloth strips, keys)",
+    "Stone cairns at each road direction",
+    "Chalk marks on ground (symbols, arrows)",
+    "Offerings at tree base (coins, flowers, bread)",
+    "Abandoned motorcycle (rusted, wheels gone)"
+  ],
+  "architectural_features": [
+    "Dead tree (central marker)",
+    "Four roads extending in cardinal directions",
+    "Stone cairns"
+  ],
+  "atmosphere": "Liminal and significant. A space of choices and messages.",
+  "current_time": "midday",
+  "current_weather": "windy"
+}
+
+
