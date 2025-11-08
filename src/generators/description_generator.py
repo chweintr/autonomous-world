@@ -20,13 +20,13 @@ from src.models.interaction import InteractionType, EmotionalTemperature
 class DescriptionGenerator:
     """Generates vivid, specific descriptions for interactions."""
     
-    def __init__(self, use_llm: bool = True, api_key: Optional[str] = None, 
-                 model: str = "gpt-4"):
+    def __init__(self, use_llm: bool = True, api_key: Optional[str] = None,
+                 model: str = "gpt-4o"):
         """
         Args:
             use_llm: If True, use LLM. If False, use templates.
             api_key: API key for LLM service (or set OPENAI_API_KEY env var)
-            model: Model name (gpt-4, gpt-3.5-turbo, claude-3, etc.)
+            model: Model name (gpt-4o, gpt-4, gpt-3.5-turbo, etc.)
         """
         self.use_llm = use_llm
         self.model = model
@@ -79,15 +79,29 @@ class DescriptionGenerator:
             from openai import OpenAI
             client = OpenAI(api_key=self.api_key)
             
-            # Few-shot example to show correct dialogue format
-            few_shot_example = {
-                "role": "assistant",
-                "content": """{
-  "action": "Measurer stops mid-step. \\"3.7 meters,\\" he announces. Collector looks up from the ground. \\"Between what?\\" Measurer extends the tape. \\"You and the nearest fallen thing.\\"",
-  "material_details": "Aqua blazer against pink ground. Measuring tape bright yellow.",
+            # Few-shot examples showing variety
+            few_shot_examples = [
+                {
+                    "role": "assistant",
+                    "content": """{
+  "action": "Measurer stops mid-step. \\"3.7 meters,\\" he announces. Collector looks up. \\"Between what?\\" The tape extends. \\"You and the nearest fallen thing.\\"",
+  "material_details": "Boot prints cross hoof prints in damp earth. Aqua blazer, pink ground. Measuring tape bright yellow.",
   "emotional_temperature": "playful"
 }"""
-            }
+                },
+                {
+                    "role": "assistant",
+                    "content": """{
+  "action": "\\"Still here?\\" Tuesday asks. The Listener doesn't answer. Or does, but not aloud. Tuesday adjusts the suitcase. The Listener nods at something unspoken.",
+  "material_details": "Tire tracks angle across gravel. Navy suit, white pinstripes. Chrome catches overhead sun.",
+  "emotional_temperature": "tense"
+}"""
+                }
+            ]
+
+            # Randomly pick one example to show
+            import random
+            few_shot_example = random.choice(few_shot_examples)
             
             response = client.chat.completions.create(
                 model=self.model,
@@ -97,10 +111,10 @@ class DescriptionGenerator:
                     few_shot_example,  # Show example with actual dialogue
                     {"role": "user", "content": prompt}
                 ],
-                temperature=1.4,  # MAXIMUM creativity - force variety
+                temperature=1.8,  # EXTREME creativity - force maximum variety
                 max_tokens=350,
-                presence_penalty=0.6,  # Penalize repetition heavily
-                frequency_penalty=0.8   # Strong penalty for repeated words
+                presence_penalty=1.0,  # Maximum penalty for repetition
+                frequency_penalty=1.0   # Maximum penalty for repeated words
             )
             
             result = response.choices[0].message.content
@@ -185,12 +199,20 @@ You are writing DIALOGUE not describing that dialogue happened.
 
 Keep it SHORT (2-8 words per line). Weird is good.
 
-2. MATERIAL DETAILS (1 sentence):
-   - Lighting quality (diffuse/harsh/low contrast/raking/splintered/god rays)
-   - Colors (pink/aqua/yellow/green/white preferred)
-   - One material detail (embroidery pattern, stripe width, fabric weight, surface texture)
-   - VARY your vocabulary - don't repeat "functional" or same descriptors
-   - Examples: "Raking light across pink pinstripes. Navy wool, crisp." / "Diffuse glow. Aqua embroidery on white linen." / "Low contrast. Yellow stitching catches eye."
+2. MATERIAL DETAILS (1-2 sentences):
+   This is SCENE DESCRIPTION, not just lighting. Paint the picture:
+
+   - What's on the ground? (boot prints, hoof prints, tire tracks, dust patterns, puddles, shadows)
+   - What textures catch your eye? (embroidery detail, fabric weight, worn leather, polished chrome)
+   - How's the light hitting things? (INVENT new lighting each time - don't repeat same phrase)
+   - Colors and materials present
+
+   VARY EVERYTHING. If you wrote "god rays" once, NEVER use it again. Invent fresh descriptions.
+
+   Examples of GOOD material details:
+   - "Boot prints and hoof prints mingle in damp earth. Pink embroidery on sleeve catches late sun."
+   - "Tire tracks cross shadows. Aqua thread on navy wool, metallic sheen."
+   - "Dust settles on chrome fender. Yellow striping, precise. Low angle light creates long shadow."
 
 3. EMOTIONAL TEMPERATURE: tense, exuberant, uncertain, charged, melancholic, aggressive, tender, ritual, or ruptured
 
@@ -233,20 +255,26 @@ The world:
 - Pink, aqua, yellow, green, white palette
 - Embroidery, stripes, matte surfaces, metallic accents
 
-VARY YOUR MATERIAL DETAILS:
-Don't repeat. Invent new combinations each time:
-- "Pink herringbone. Wool weight."
-- "Aqua chain-stitch on white linen. Crisp."
-- "Yellow piping catches raking light. Matte navy."
-- "Green embroidered spirals. Metallic thread."
+VARY YOUR MATERIAL DETAILS (these are SCENE details, not just lighting):
+NEVER copy these examples exactly. Use them as inspiration only:
+- "Boot prints and hoof prints mingle in damp earth. Pink embroidery catches late sun."
+- "Tire tracks cross shadows. Aqua thread on navy wool, metallic sheen."
+- "Gravel scatters. Yellow striping on chrome fender. Sharp sidelight."
+- "Mud puddles reflect sky. Green stitching, raised texture."
+- "Dust on polished leather. White linen pleats, crisp."
 
-VARY YOUR LIGHTING:
-- God rays at low angle
-- Diffuse overcast glow
-- Raking sidelight, harsh shadows
-- Direct overhead, high contrast
-- Splintered through clouds
-- Heavy atmosphere, low value
+INVENT YOUR OWN lighting descriptions. Don't use mine:
+Examples to INSPIRE you (DON'T COPY):
+- Morning sun through haze
+- Backlit silhouettes
+- Flat noon light
+- Golden hour glow
+- Storm light, low contrast
+- Streetlamp pools
+
+🚨 IF YOU WRITE THE EXACT SAME MATERIAL DETAILS TWICE, YOU FAIL.
+🚨 IF YOU USE "God rays at low angle" MORE THAN ONCE, YOU FAIL.
+🚨 INVENT. DON'T TEMPLATE.
 
 BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
     
@@ -334,20 +362,37 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         
         action = random.choice(actions)
         
-        # Material details - vary vocabulary, avoid "functional"
-        lighting_variations = [
-            f"Diffuse {time_of_day} light. {random.choice(['Low contrast', 'High contrast', 'Muted tones', 'Crisp shadows'])}.",
-            f"{random.choice(['Raking sidelight', 'Direct overhead', 'Splintered through clouds', 'God rays at low angle'])}. Dust visible.",
-            f"{random.choice(['Heavy atmosphere', 'Clear sharp air', 'Hazy distance', 'Crystalline quality'])}. {weather} colors the scene."
+        # Material details - SCENE descriptions, varied
+        ground_details = [
+            "Boot prints cross tire tracks in dust.",
+            "Hoof prints and footprints mingle.",
+            "Shadows pool in wheel ruts.",
+            "Mud reflects pale sky.",
+            "Gravel scattered, uneven."
         ]
 
-        material_variations = [
-            f"Pink pinstripes on navy. {random.choice(['Wool weight', 'Linen crisp', 'Cotton soft', 'Stiff canvas'])}.",
-            f"Aqua embroidery catches light. {random.choice(['Metallic thread', 'Matte stitching', 'Raised texture', 'Flat panels'])}.",
-            f"{random.choice(['Yellow accents', 'Green piping', 'White trim', 'Pale edging'])} on structured jacket."
+        fabric_details = [
+            "Pink herringbone catches light. Wool weight.",
+            "Aqua embroidery, chain-stitch. Metallic thread.",
+            "Yellow piping on matte navy. Crisp pleats.",
+            "Green stitching. Raised texture.",
+            "White linen, pressed. Silver buttons."
         ]
 
-        materials = lighting_variations + material_variations
+        lighting_scene = [
+            f"Late {time_of_day} sun slants across scene.",
+            f"Diffuse {time_of_day} glow. Soft edges.",
+            f"Sharp shadows. {weather} light.",
+            f"Overhead light flattens depth.",
+            f"Backlit figures. Hazy outlines."
+        ]
+
+        # Combine ground + fabric/lighting for richer scene
+        materials = [
+            f"{random.choice(ground_details)} {random.choice(fabric_details)}",
+            f"{random.choice(lighting_scene)} {random.choice(fabric_details)}",
+            f"{random.choice(ground_details)} {random.choice(lighting_scene)}"
+        ]
         
         material = random.choice(materials)
         
