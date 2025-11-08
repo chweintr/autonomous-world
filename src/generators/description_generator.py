@@ -34,10 +34,15 @@ class DescriptionGenerator:
         if use_llm:
             self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
             if not self.api_key:
-                print("⚠️  Warning: No API key provided. Falling back to template-based generation.")
+                print("=" * 80)
+                print("⚠️  ⚠️  ⚠️  WARNING: NO API KEY FOUND ⚠️  ⚠️  ⚠️")
+                print("Set OPENAI_API_KEY in environment variables to use LLM mode.")
+                print("Falling back to TEMPLATE-BASED GENERATION (limited variety)")
+                print("=" * 80)
                 self.use_llm = False
             else:
                 print(f"✓ LLM mode enabled with model: {self.model}")
+                print(f"✓ API key found: {self.api_key[:8]}...{self.api_key[-4:]}")
     
     def generate_interaction_description(
         self,
@@ -359,11 +364,29 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         animals = [c.animal_companion.name for c in characters]
         
         if interaction_type == InteractionType.CHARACTER_TO_CHARACTER:
-            # Generate simple dialogue instead of "words are exchanged"
+            # Generate varied dialogue - random each time
+            questions = [
+                "How many days?", "Where's the horse?", "Did you find it?",
+                "What time is it?", "Who was here?", "What's that sound?",
+                "Are we done?", "Is this the place?", "What did they say?",
+                "When do we leave?", "Which one?", "Who told you?",
+                "How far?", "What's missing?", "Why stop here?",
+                "Is it Tuesday?", "What's broken?", "Who's counting?"
+            ]
+
+            responses = [
+                "considers", "looks away", "doesn't answer", "shrugs",
+                "waits", "glances at {animal}", "adjusts position",
+                "looks at the horizon", "remains silent"
+            ]
+
+            response = random.choice(responses).format(animal=animals[0] if animals else "the animal")
+            other_char = char_names[1] if len(char_names) > 1 else "the other"
+
             actions = [
-                f'{char_names[0]}: "You again." {char_names[1] if len(char_names) > 1 else "The other"} nods. {animals[0]} watches.',
-                f'{char_names[0]} and {char_names[1] if len(char_names) > 1 else "another figure"} stand facing each other. Silence. Then {char_names[0]}: "Still here?"',
-                f'"{random.choice(["Lost anything?", "How long?", "Which direction?", "Same as yesterday?"])}" {char_names[0]} asks. {char_names[1] if len(char_names) > 1 else "The other"} considers. {animals[0]} shifts position.'
+                f'"{random.choice(questions)}" {char_names[0]} asks. {other_char} {response}.',
+                f'{char_names[0]} and {other_char} face each other. "{random.choice(questions)}" {animals[0] if animals else "The animal"} watches.',
+                f'"{random.choice(questions)}" {other_char}: "Tomorrow." {char_names[0]} nods.'
             ]
         elif interaction_type == InteractionType.CHARACTER_TO_ANIMAL:
             actions = [
@@ -385,41 +408,35 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         
         action = random.choice(actions)
         
-        # Material details - VISUAL MOMENTS, not generic descriptions
-        # Describe what's happening VISUALLY in this specific moment
-
-        movement_details = [
-            "Dust rises where foot meets earth.",
-            "Sleeve shifts as arm gestures.",
-            "Shadow falls across ground as figure moves.",
-            "Fabric folds with posture change.",
-            "Chrome gleams as head turns."
+        # Material details - generate random combinations
+        movements = [
+            "Dust lifts", "Fabric shifts", "Shadow moves", "Boot scuffs ground",
+            "Hand gestures", "Body turns", "Weight shifts", "Posture changes",
+            "Arm extends", "Head tilts", "Leg extends", "Shoulder drops"
         ]
 
-        light_atmosphere = [
-            f"Air thick with {time_of_day} heat.",
-            f"Light fractures through dust particles.",
-            f"Glow from {weather} sky diffuses shadows.",
-            f"Sun angle creates contrast between lit/unlit.",
-            f"Atmosphere holds suspended particles visible."
+        where = [
+            "as figure moves", "with the gesture", "during the pause",
+            "in the moment", "as words spoken", "while waiting",
+            "at the exchange", "during stillness", "in the silence"
         ]
 
-        specific_visual = [
-            "Thread - metallic, catching afternoon glow - spirals through fabric.",
-            "Ground where boot disturbed surface shows darker earth beneath.",
-            "Embroidery pattern emerges as fabric stretches with gesture.",
-            "Chrome surface mirrors distorted scene reflection.",
-            "Jacket hem moves, reveals lining color contrast."
+        visual_elements = [
+            f"Embroidery - {random.choice(['pink', 'aqua', 'yellow', 'green'])} {random.choice(['spirals', 'chevrons', 'florals', 'stripes'])} - catches light",
+            f"Thread - metallic - {random.choice(['visible', 'gleaming', 'catching glow', 'reflects'])}",
+            f"{random.choice(['Chrome', 'Metal', 'Polished surface'])} {random.choice(['reflects', 'mirrors', 'catches', 'distorts'])} {random.choice(['scene', 'surroundings', 'light', 'shapes'])}",
+            f"Lining - {random.choice(['contrasting', 'pale', 'dark', 'bright'])} {random.choice(['pink', 'aqua', 'white', 'yellow'])} - {random.choice(['visible', 'revealed', 'shows', 'emerges'])}",
+            f"Ground shows {random.choice(['boot marks', 'disturbed earth', 'compressed surface', 'scuff marks', 'fresh impressions'])}"
         ]
 
-        # Combine for SPECIFIC visual moments, not generic lists
-        materials = [
-            f"{random.choice(movement_details)} {random.choice(specific_visual)}",
-            f"{random.choice(light_atmosphere)} {random.choice(specific_visual)}",
-            f"{random.choice(movement_details)} {random.choice(light_atmosphere)}"
+        atmosphere = [
+            f"{time_of_day.capitalize()} {random.choice(['light', 'glow', 'sun'])} {random.choice(['diffuses', 'fractures', 'scatters', 'illuminates'])}",
+            f"Air {random.choice(['thick', 'heavy', 'still', 'shimmering'])} with {random.choice(['heat', 'dust', 'particles', 'haze'])}",
+            f"{weather.capitalize()} sky {random.choice(['overhead', 'above', 'stretching', 'looming'])}"
         ]
-        
-        material = random.choice(materials)
+
+        # Randomly combine elements
+        material = f"{random.choice(movements)} {random.choice(where)}. {random.choice(visual_elements)}. {random.choice(atmosphere)}."
         
         # Emotional temperature based on characters' states
         avg_intensity = sum(c.emotional_intensity for c in characters) / len(characters)
