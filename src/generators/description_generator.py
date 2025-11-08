@@ -87,7 +87,7 @@ class DescriptionGenerator:
                     "role": "assistant",
                     "content": """{
   "action": "Measurer stops mid-step. \\"3.7 meters,\\" he announces. Collector looks up. \\"Between what?\\" The tape extends. \\"You and the nearest fallen thing.\\"",
-  "material_details": "Boot prints cross hoof prints in damp earth. Aqua blazer, pink ground. Measuring tape bright yellow.",
+  "material_details": "Dust rises where Measurer's boot disturbs ground. Sleeve - aqua thread spiraling through white linen - shifts as arm gestures with measuring tape.",
   "emotional_temperature": "playful"
 }"""
                 },
@@ -95,7 +95,7 @@ class DescriptionGenerator:
                     "role": "assistant",
                     "content": """{
   "action": "\\"Still here?\\" Tuesday asks. The Listener doesn't answer. Or does, but not aloud. Tuesday adjusts the suitcase. The Listener nods at something unspoken.",
-  "material_details": "Tire tracks angle across gravel. Navy suit, white pinstripes. Chrome catches overhead sun.",
+  "material_details": "Chrome handle catches overhead glare as suitcase shifts position. Jacket fabric - navy with pale stripe - folds differently as Tuesday's weight changes.",
   "emotional_temperature": "tense"
 }"""
                 },
@@ -103,7 +103,7 @@ class DescriptionGenerator:
                     "role": "assistant",
                     "content": """{
   "action": "Backward: \\"Tomorrow I saw you here.\\" Parade tilts head. \\"Was I performing?\\" Backward considers the future-past. \\"You will have been.\\"",
-  "material_details": "Shadows stretch toward evening. Green embroidery on pink wool. Dust hangs suspended.",
+  "material_details": "Afternoon light fractures through suspended dust. Embroidery - green branching pattern - becomes visible as fabric stretches with Parade's movement.",
   "emotional_temperature": "ritual"
 }"""
                 }
@@ -211,19 +211,22 @@ You are writing DIALOGUE not describing that dialogue happened.
 Keep it SHORT (2-8 words per line). Weird is good.
 
 2. MATERIAL DETAILS (1-2 sentences):
-   This is SCENE DESCRIPTION, not just lighting. Paint the picture:
+   This is VISUAL SCENE DESCRIPTION. Describe THIS specific moment, not generic things.
 
-   - What's on the ground? (boot prints, hoof prints, tire tracks, dust patterns, puddles, shadows)
-   - What textures catch your eye? (embroidery detail, fabric weight, worn leather, polished chrome)
-   - How's the light hitting things? (INVENT new lighting each time - don't repeat same phrase)
-   - Colors and materials present
+   DON'T describe colors/items generically ("yellow piping", "boot prints")
+   DO describe the visual moment: What's happening visually RIGHT NOW that catches the eye?
 
-   VARY EVERYTHING. If you wrote "god rays" once, NEVER use it again. Invent fresh descriptions.
+   BAD (generic): "Boot prints cross tire tracks. Yellow piping on navy."
+   GOOD (specific visual): "Dust rises where foot meets ground. Jacket sleeve - pink thread spirals through white fabric - moves as arm gestures."
 
-   Examples of GOOD material details:
-   - "Boot prints and hoof prints mingle in damp earth. Pink embroidery on sleeve catches late sun."
-   - "Tire tracks cross shadows. Aqua thread on navy wool, metallic sheen."
-   - "Dust settles on chrome fender. Yellow striping, precise. Low angle light creates long shadow."
+   DESCRIBE THE MOMENT:
+   - What movement is happening? (sleeve shifting, dust rising, shadow falling)
+   - What detail catches light? (thread catching sun, chrome reflecting, fabric folding)
+   - What's the atmospheric quality? (heat shimmer, dust suspended, air still)
+   - Ground state? (what's actually ON the ground in this moment - not just "boot prints")
+
+   🚨 NEVER REPEAT PHRASES. Track what you've said. Invent totally fresh each time.
+   🚨 Don't use color + item ("yellow piping") - describe what you SEE ("metallic thread catches afternoon glow")
 
 3. EMOTIONAL TEMPERATURE: tense, exuberant, uncertain, charged, melancholic, aggressive, tender, ritual, or ruptured
 
@@ -273,26 +276,25 @@ The world:
 - Pink, aqua, yellow, green, white palette
 - Embroidery, stripes, matte surfaces, metallic accents
 
-VARY YOUR MATERIAL DETAILS (these are SCENE details, not just lighting):
-NEVER copy these examples exactly. Use them as inspiration only:
-- "Boot prints and hoof prints mingle in damp earth. Pink embroidery catches late sun."
-- "Tire tracks cross shadows. Aqua thread on navy wool, metallic sheen."
-- "Gravel scatters. Yellow striping on chrome fender. Sharp sidelight."
-- "Mud puddles reflect sky. Green stitching, raised texture."
-- "Dust on polished leather. White linen pleats, crisp."
+MATERIAL DETAILS = VISUAL MOMENTS (describe what's happening visually RIGHT NOW):
 
-INVENT YOUR OWN lighting descriptions. Don't use mine:
-Examples to INSPIRE you (DON'T COPY):
-- Morning sun through haze
-- Backlit silhouettes
-- Flat noon light
-- Golden hour glow
-- Storm light, low contrast
-- Streetlamp pools
+DON'T write generic lists: "Boot prints. Yellow piping. Chrome."
+DO describe the visual moment: "Dust rises where boot meets ground. Thread - metallic, catching sun - visible as sleeve moves."
 
-🚨 IF YOU WRITE THE EXACT SAME MATERIAL DETAILS TWICE, YOU FAIL.
-🚨 IF YOU USE "God rays at low angle" MORE THAN ONCE, YOU FAIL.
-🚨 INVENT. DON'T TEMPLATE.
+EXAMPLES (for inspiration - NEVER COPY):
+- "Air shimmers with heat. Embroidery pattern - pink spirals - emerges as fabric stretches."
+- "Shadow falls across scene as figure shifts. Chrome reflects distorted shapes."
+- "Light fractures through suspended particles. Jacket hem reveals lining contrast as body turns."
+- "Ground where boot disturbed shows darker earth beneath. Thread catches afternoon glow."
+
+DESCRIBE MOVEMENT + LIGHT + SPECIFIC DETAIL:
+✓ What's moving? (sleeve, shadow, dust)
+✓ How's light hitting? (catching, fracturing, reflecting)
+✓ What specific detail emerges? (embroidery visible, color contrast, surface texture)
+
+🚨 IF YOU WRITE SAME PHRASE TWICE ("boot prints cross") YOU FAIL
+🚨 IF YOU USE GENERIC COLOR+ITEM ("yellow piping") YOU FAIL
+🚨 DESCRIBE THE VISUAL MOMENT, NOT INVENTORY OF THINGS
 
 BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
     
@@ -380,36 +382,38 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         
         action = random.choice(actions)
         
-        # Material details - SCENE descriptions, varied
-        ground_details = [
-            "Boot prints cross tire tracks in dust.",
-            "Hoof prints and footprints mingle.",
-            "Shadows pool in wheel ruts.",
-            "Mud reflects pale sky.",
-            "Gravel scattered, uneven."
+        # Material details - VISUAL MOMENTS, not generic descriptions
+        # Describe what's happening VISUALLY in this specific moment
+
+        movement_details = [
+            "Dust rises where foot meets earth.",
+            "Sleeve shifts as arm gestures.",
+            "Shadow falls across ground as figure moves.",
+            "Fabric folds with posture change.",
+            "Chrome gleams as head turns."
         ]
 
-        fabric_details = [
-            "Pink herringbone catches light. Wool weight.",
-            "Aqua embroidery, chain-stitch. Metallic thread.",
-            "Yellow piping on matte navy. Crisp pleats.",
-            "Green stitching. Raised texture.",
-            "White linen, pressed. Silver buttons."
+        light_atmosphere = [
+            f"Air thick with {time_of_day} heat.",
+            f"Light fractures through dust particles.",
+            f"Glow from {weather} sky diffuses shadows.",
+            f"Sun angle creates contrast between lit/unlit.",
+            f"Atmosphere holds suspended particles visible."
         ]
 
-        lighting_scene = [
-            f"Late {time_of_day} sun slants across scene.",
-            f"Diffuse {time_of_day} glow. Soft edges.",
-            f"Sharp shadows. {weather} light.",
-            f"Overhead light flattens depth.",
-            f"Backlit figures. Hazy outlines."
+        specific_visual = [
+            "Thread - metallic, catching afternoon glow - spirals through fabric.",
+            "Ground where boot disturbed surface shows darker earth beneath.",
+            "Embroidery pattern emerges as fabric stretches with gesture.",
+            "Chrome surface mirrors distorted scene reflection.",
+            "Jacket hem moves, reveals lining color contrast."
         ]
 
-        # Combine ground + fabric/lighting for richer scene
+        # Combine for SPECIFIC visual moments, not generic lists
         materials = [
-            f"{random.choice(ground_details)} {random.choice(fabric_details)}",
-            f"{random.choice(lighting_scene)} {random.choice(fabric_details)}",
-            f"{random.choice(ground_details)} {random.choice(lighting_scene)}"
+            f"{random.choice(movement_details)} {random.choice(specific_visual)}",
+            f"{random.choice(light_atmosphere)} {random.choice(specific_visual)}",
+            f"{random.choice(movement_details)} {random.choice(light_atmosphere)}"
         ]
         
         material = random.choice(materials)

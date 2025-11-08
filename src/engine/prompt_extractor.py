@@ -142,26 +142,37 @@ class PromptExtractor:
     def _generate_prompts_template(self, interaction: Interaction) -> PaintablePrompt:
         """Generate prompts using templates (fast, no LLM)."""
         
-        # Composition description
+        # Composition with structure: vantage, scene, light, weather
+        import random
+        vantages = ["Eye level", "Low angle looking up", "High angle looking down", "From behind", "Three-quarter view", "Profile view"]
+
         num_chars = len(interaction.characters_present)
         num_animals = len(interaction.animals_present)
-        
-        composition = f"{num_chars} figure{'s' if num_chars > 1 else ''}"
+
+        composition = f"Vantage: {random.choice(vantages)}. "
+        composition += f"Scene: {num_chars} figure{'s' if num_chars > 1 else ''}"
         if num_animals > 0:
             composition += f" + {num_animals} animal{'s' if num_animals > 1 else ''}"
-        composition += f" at {interaction.location_name}. {interaction.time_of_day.title()} light."
-        
-        # Color notes (extract from material details)
+        composition += f" at {interaction.location_name}. "
+        composition += f"Light: {interaction.time_of_day}. "
+        composition += f"Atmosphere: {random.choice(['clear', 'hazy', 'dust-heavy', 'still air'])}."
+
+        # Color notes (extract specific colors from material details)
         color_notes = interaction.material_details
-        
+
         # Gesture notes (extract from action)
         gesture_notes = interaction.action_description.split('.')[0]  # First sentence
-        
-        # Painting prompt for CALEB
-        painting_prompt = f"CALEB - Paint this moment:\n\n"
-        painting_prompt += f"{interaction.action_description}\n\n"
-        painting_prompt += f"Focus on: {interaction.emotional_temperature.value} quality, "
-        painting_prompt += f"the spatial arrangement, colors mentioned ({color_notes})"
+
+        # Conversational painting prompt for CALEB
+        conversation_starters = [
+            "CALEB, consider this:",
+            "CALEB, what do you think about",
+            "CALEB, this caught my eye:",
+            "CALEB, look at"
+        ]
+        painting_prompt = f"{random.choice(conversation_starters)} {interaction.action_description}\n\n"
+        painting_prompt += f"What interests me: the {interaction.emotional_temperature.value} quality between these figures. "
+        painting_prompt += f"How would you handle {random.choice(['the spatial tension', 'the gesture', 'the light quality', 'the color relationships'])}?"
 
         # Image generation prompt - technical lighting/camera terms
         import random
@@ -204,24 +215,34 @@ class PromptExtractor:
 FIELD NOTE:
 {interaction.to_field_note()}
 
-Extract:
-1. COMPOSITION: Describe spatial arrangement - who, where, how arranged. Include VANTAGE POINT (eye level? low angle? from behind? three-quarter?)
+Extract these elements:
 
-2. COLOR: Key color relationships and palette details
+1. COMPOSITION - Structure this as:
+   - Vantage: (eye level? low angle looking up? high angle? from behind? three-quarter?)
+   - Scene arrangement: who is where, spatial relationship
+   - Light quality: describe how light hits the scene
+   - Weather/atmosphere: what's the air like?
 
-3. GESTURE: Most important gesture or physical detail
+2. COLOR: Key color relationships - be specific about where colors appear and how they relate
 
-4. PAINTING_PROMPT: Directive for CALEB. What to focus on, what makes it compelling. Start with "CALEB - "
+3. GESTURE: The key physical moment - what's the gesture/posture that defines this?
 
-5. IMAGE_GEN_PROMPT: For Stable Diffusion/Midjourney. Use TECHNICAL TERMS:
-   - Lighting: low/high contrast, diffuse light, god rays, heavy atmosphere, low value, splintering light, raking sidelight, direct overhead
-   - Vantage: eye level, low angle, high angle, from behind, three-quarter view, profile
-   - Texture: fabric weight visible, surface sheen, matte finish, crisp edges, soft focus background
+4. PAINTING_PROMPT: Write conversationally to CALEB. Like you're talking to a friend.
+   - Start with: "CALEB, consider this:" or "CALEB, what do you think about..."
+   - Describe what's compelling about THIS moment
+   - Ask questions: "How would you handle...?" "What if you focused on...?"
+   - Be conversational, not directive
 
-   DO NOT use: "cinematic", "fashion editorial", "Thom Browne aesthetic"
-   DO use: technical camera/lighting terms, vantage point, texture descriptions
+5. IMAGE_GEN_PROMPT: Technical prompt for AI image generation
+   - Vantage point (specific)
+   - Lighting (technical terms, not generic)
+   - Atmospheric quality
+   - Key compositional elements
+   - Texture/surface qualities
 
-6. WHY_PAINTABLE: Why this moment is worth painting (1 sentence)
+   🚨 VARY your language. Don't repeat same technical terms.
+
+6. WHY_PAINTABLE: One sentence - what makes this worth capturing?
 
 Format as JSON:
 {{
