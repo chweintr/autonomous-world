@@ -183,7 +183,12 @@ You are writing DIALOGUE not describing that dialogue happened.
 
 Keep it SHORT (2-8 words per line). Weird is good.
 
-2. MATERIAL DETAILS (1 sentence): Colors (pink/aqua/yellow/green/white preferred), one pattern. Keep minimal.
+2. MATERIAL DETAILS (1 sentence):
+   - Lighting quality (diffuse/harsh/low contrast/raking/splintered/god rays)
+   - Colors (pink/aqua/yellow/green/white preferred)
+   - One material detail (embroidery pattern, stripe width, fabric weight, surface texture)
+   - VARY your vocabulary - don't repeat "functional" or same descriptors
+   - Examples: "Raking light across pink pinstripes. Navy wool, crisp." / "Diffuse glow. Aqua embroidery on white linen." / "Low contrast. Yellow stitching catches eye."
 
 3. EMOTIONAL TEMPERATURE: tense, exuberant, uncertain, charged, melancholic, aggressive, tender, ritual, or ruptured
 
@@ -211,14 +216,15 @@ Measurer: "The truth and your suitcase."
 
 Write lean and specific. Think: Nabokov's precision meets accessible prose. Never overwrought, never romance novel.
 
-The world (like Delicatessen meets fashion editorial):
-- Bikers in elaborate embroidered clothing (nonsensical patterns, formal)
+The world:
+- Bikers in elaborate embroidered clothing (nonsensical patterns, formal tailoring)
 - Motorcycles that are horses, horses that are motorcycles (sometimes both, sometimes neither)
 - Real and prosthetic beards (groomed, indistinguishable)
-- Sharp tailoring, Thom Browne-like formality applied absurdly
+- Sharp tailoring applied absurdly - structured garments, crisp pleats, sculptural forms
 - Animals externalize their companions' emotions
-- Cinematic/photographic quality, not painted
+- Photographic quality - describe like you're framing a shot
 - Pink, aqua, yellow, green palette (NOT desert browns)
+- Varied materials: embroidered panels, striped sleeves, matte navy, metallic accents, woven textures
 
 Write with restraint:
 - SHORT sentences when possible
@@ -292,10 +298,11 @@ Focus: gesture, dialogue, pattern, color. Keep it lean."""
         animals = [c.animal_companion.name for c in characters]
         
         if interaction_type == InteractionType.CHARACTER_TO_CHARACTER:
+            # Generate simple dialogue instead of "words are exchanged"
             actions = [
-                f"{char_names[0]} approaches {char_names[1] if len(char_names) > 1 else 'the space'}. Their postures suggest tension. {animals[0]} watches from a distance.",
-                f"{char_names[0]} and {char_names[1] if len(char_names) > 1 else 'another figure'} stand facing each other. The space between them feels charged. Silence holds.",
-                f"Words are exchanged between {char_names[0]} and {char_names[1] if len(char_names) > 1 else 'another'}. {animals[0]} shifts position, uneasy."
+                f'{char_names[0]}: "You again." {char_names[1] if len(char_names) > 1 else "The other"} nods. {animals[0]} watches.',
+                f'{char_names[0]} and {char_names[1] if len(char_names) > 1 else "another figure"} stand facing each other. Silence. Then {char_names[0]}: "Still here?"',
+                f'"{random.choice(["Lost anything?", "How long?", "Which direction?", "Same as yesterday?"])}" {char_names[0]} asks. {char_names[1] if len(char_names) > 1 else "The other"} considers. {animals[0]} shifts position.'
             ]
         elif interaction_type == InteractionType.CHARACTER_TO_ANIMAL:
             actions = [
@@ -317,12 +324,20 @@ Focus: gesture, dialogue, pattern, color. Keep it lean."""
         
         action = random.choice(actions)
         
-        # Material details
-        materials = [
-            f"{location.lighting_quality}. Colors muted by {weather}. {random.choice(location.objects_present) if location.objects_present else 'The ground'} catches the eye.",
-            f"The light is {time_of_day}. Shadows {random.choice(['long', 'sharp', 'soft', 'harsh'])}. Dust visible in the air.",
-            f"{random.choice(characters).physical_description[:50]}... against the backdrop of {location.name}."
+        # Material details - vary vocabulary, avoid "functional"
+        lighting_variations = [
+            f"Diffuse {time_of_day} light. {random.choice(['Low contrast', 'High contrast', 'Muted tones', 'Crisp shadows'])}.",
+            f"{random.choice(['Raking sidelight', 'Direct overhead', 'Splintered through clouds', 'God rays at low angle'])}. Dust visible.",
+            f"{random.choice(['Heavy atmosphere', 'Clear sharp air', 'Hazy distance', 'Crystalline quality'])}. {weather} colors the scene."
         ]
+
+        material_variations = [
+            f"Pink pinstripes on navy. {random.choice(['Wool weight', 'Linen crisp', 'Cotton soft', 'Stiff canvas'])}.",
+            f"Aqua embroidery catches light. {random.choice(['Metallic thread', 'Matte stitching', 'Raised texture', 'Flat panels'])}.",
+            f"{random.choice(['Yellow accents', 'Green piping', 'White trim', 'Pale edging'])} on structured jacket."
+        ]
+
+        materials = lighting_variations + material_variations
         
         material = random.choice(materials)
         

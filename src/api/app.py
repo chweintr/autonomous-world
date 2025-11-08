@@ -11,6 +11,7 @@ from src.engine.world_state import WorldState
 from src.engine.simulation import Simulation, SimulationConfig
 from src.models.interaction import Interaction
 from src.engine.prompt_extractor import PromptExtractor
+from src.engine.quality_analyzer import QualityAnalyzer
 
 
 app = Flask(__name__, 
@@ -224,13 +225,28 @@ def save_session():
 def reset_simulation():
     """Reset the simulation."""
     global current_simulation, world_state
-    
+
     initialize_world()
     current_simulation = None
-    
+
     return jsonify({
         'status': 'success',
         'message': 'Simulation reset'
+    })
+
+
+@app.route('/api/quality/analyze', methods=['GET'])
+def analyze_quality():
+    """Analyze session quality and detect repetition."""
+    if current_simulation is None or len(current_simulation.world.interactions_log) == 0:
+        return jsonify({'status': 'error', 'message': 'No interactions to analyze'}), 400
+
+    analyzer = QualityAnalyzer()
+    analysis = analyzer.analyze_session(current_simulation.world.interactions_log)
+
+    return jsonify({
+        'status': 'success',
+        'analysis': analysis
     })
 
 

@@ -157,17 +157,22 @@ class PromptExtractor:
         # Gesture notes (extract from action)
         gesture_notes = interaction.action_description.split('.')[0]  # First sentence
         
-        # Painting prompt for artist
-        painting_prompt = f"Paint this moment:\n\n"
+        # Painting prompt for CALEB
+        painting_prompt = f"CALEB - Paint this moment:\n\n"
         painting_prompt += f"{interaction.action_description}\n\n"
         painting_prompt += f"Focus on: {interaction.emotional_temperature.value} quality, "
         painting_prompt += f"the spatial arrangement, colors mentioned ({color_notes})"
-        
-        # Image generation prompt (for SD, Midjourney, etc.)
+
+        # Image generation prompt - technical lighting/camera terms
+        import random
+        lighting_terms = ["low contrast", "high contrast", "diffuse light", "god rays", "heavy atmosphere", "low value", "splintering light", "direct overhead light", "raking sidelight"]
+        vantage_terms = ["eye level", "low angle looking up", "high angle looking down", "from behind", "three-quarter view", "profile view"]
+        texture_terms = ["fabric weight visible", "surface sheen", "matte finish", "crisp edges", "soft focus background"]
+
         image_gen_prompt = f"{interaction.action_description} "
         image_gen_prompt += f"{interaction.material_details} "
-        image_gen_prompt += f"Cinematic, fashion editorial style, Thom Browne aesthetic, "
-        image_gen_prompt += f"pink and aqua color palette, sculptural quality, "
+        image_gen_prompt += f"{random.choice(lighting_terms)}, {random.choice(vantage_terms)}, "
+        image_gen_prompt += f"{random.choice(texture_terms)}, sculptural quality, "
         image_gen_prompt += f"{interaction.emotional_temperature.value} mood"
         
         # Why paintable
@@ -194,17 +199,28 @@ class PromptExtractor:
             from openai import OpenAI
             client = OpenAI(api_key=self.api_key)
             
-            analysis_prompt = f"""Analyze this field note and extract painting/image generation prompts:
+            analysis_prompt = f"""Analyze this field note and extract painting/image generation prompts for CALEB (the painter):
 
 FIELD NOTE:
 {interaction.to_field_note()}
 
 Extract:
-1. COMPOSITION: Describe the spatial arrangement (who where, how arranged, viewpoint)
-2. COLOR: Key color relationships and palette
+1. COMPOSITION: Describe spatial arrangement - who, where, how arranged. Include VANTAGE POINT (eye level? low angle? from behind? three-quarter?)
+
+2. COLOR: Key color relationships and palette details
+
 3. GESTURE: Most important gesture or physical detail
-4. PAINTING_PROMPT: Directive for a painter (what to focus on, what makes it compelling)
-5. IMAGE_GEN_PROMPT: Prompt for Stable Diffusion/Midjourney (technical, includes style keywords)
+
+4. PAINTING_PROMPT: Directive for CALEB. What to focus on, what makes it compelling. Start with "CALEB - "
+
+5. IMAGE_GEN_PROMPT: For Stable Diffusion/Midjourney. Use TECHNICAL TERMS:
+   - Lighting: low/high contrast, diffuse light, god rays, heavy atmosphere, low value, splintering light, raking sidelight, direct overhead
+   - Vantage: eye level, low angle, high angle, from behind, three-quarter view, profile
+   - Texture: fabric weight visible, surface sheen, matte finish, crisp edges, soft focus background
+
+   DO NOT use: "cinematic", "fashion editorial", "Thom Browne aesthetic"
+   DO use: technical camera/lighting terms, vantage point, texture descriptions
+
 6. WHY_PAINTABLE: Why this moment is worth painting (1 sentence)
 
 Format as JSON:
@@ -221,7 +237,7 @@ Format as JSON:
             response = client.chat.completions.create(
                 model="gpt-4o",
                 messages=[
-                    {"role": "system", "content": "You are an art director helping painters identify strong moments."},
+                    {"role": "system", "content": "You are an art director helping CALEB (the painter) identify strong moments. Use technical photography/lighting terms, not style references. Describe vantage point, contrast, light quality, texture."},
                     {"role": "user", "content": analysis_prompt}
                 ],
                 temperature=0.7,

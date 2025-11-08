@@ -308,17 +308,19 @@ async function resetSimulation() {
 async function extractPaintableMoments() {
     try {
         const useLLM = document.getElementById('use-llm').checked;
-        
+
         const response = await fetch('/api/paintable/extract', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ top_n: 5, use_llm: useLLM })
         });
-        
+
         const result = await response.json();
-        
+
         if (result.status === 'success') {
             displayPaintableMoments(result.moments);
+            // Also run quality analysis
+            await analyzeQuality();
         } else {
             alert('Error extracting moments: ' + result.message);
         }
@@ -326,6 +328,57 @@ async function extractPaintableMoments() {
         console.error('Error extracting paintable moments:', error);
         alert('Error extracting moments. Make sure a simulation has been run.');
     }
+}
+
+// Analyze session quality
+async function analyzeQuality() {
+    try {
+        const response = await fetch('/api/quality/analyze');
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            displayQualityFeedback(result.analysis);
+        }
+    } catch (error) {
+        console.error('Error analyzing quality:', error);
+    }
+}
+
+// Display quality feedback
+function displayQualityFeedback(analysis) {
+    const container = document.getElementById('emergence-report');
+    let html = '<h3>Quality Analysis</h3>';
+
+    if (analysis.suggestions.length === 0) {
+        html += '<p style="color: green;">✓ No major issues detected. Good variety!</p>';
+    } else {
+        html += '<div style="background: #2a2a2a; padding: 15px; margin: 10px 0; border-left: 3px solid #ff6b6b;">';
+
+        analysis.suggestions.forEach(suggestion => {
+            const severityColor = suggestion.severity === 'high' ? '#ff6b6b' : '#ffa500';
+            html += `<div style="margin-bottom: 15px;">`;
+            html += `<strong style="color: ${severityColor};">${suggestion.type.toUpperCase()}</strong><br>`;
+            html += `${suggestion.message}<br>`;
+            html += `<em style="color: #888;">${suggestion.detail}</em>`;
+            if (suggestion.action) {
+                html += `<br><span style="color: #4ecdc4;">→ ${suggestion.action}</span>`;
+            }
+            html += `</div>`;
+        });
+
+        html += '</div>';
+    }
+
+    // Show word frequency
+    if (analysis.overused_words && Object.keys(analysis.overused_words).length > 0) {
+        html += '<h4>Overused Words:</h4><ul>';
+        for (const [word, count] of Object.entries(analysis.overused_words)) {
+            html += `<li><strong>${word}</strong>: used ${count} times</li>`;
+        }
+        html += '</ul>';
+    }
+
+    container.innerHTML = html;
 }
 
 // Display paintable moments
@@ -387,5 +440,46 @@ function displayPaintableMoments(moments) {
 
     // Scroll to top
     container.scrollTop = 0;
+
+    // Add download button
+    const downloadBtn = document.createElement('button');
+    downloadBtn.textContent = 'Download Paintable Moments';
+    downloadBtn.onclick = () => downloadPaintableMoments(moments);
+    downloadBtn.style.marginTop = '20px';
+    container.appendChild(downloadBtn);
+}
+
+// Download paintable moments as text file
+function downloadPaintableMoments(moments) {
+    let content = 'PAINTABLE MOMENTS - ' + new Date().toLocaleString() + '\n\n';
+    content += '='.repeat(60) + '\n\n';
+
+    moments.forEach((moment, index) => {
+        const time = new Date(moment.timestamp).toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        content += `MOMENT ${index + 1} [${time}] - ${moment.location}\n\n`;
+        content += `COMPOSITION:\n${moment.composition}\n\n`;
+        content += `COLOR:\n${moment.color_notes}\n\n`;
+        content += `KEY GESTURE:\n${moment.gesture_notes}\n\n`;
+        content += `FOR CALEB (PAINTER):\n${moment.painting_prompt}\n\n`;
+        content += `FOR IMAGE GENERATION:\n${moment.image_gen_prompt}\n\n`;
+        content += `WHY PAINTABLE:\n${moment.why_paintable}\n\n`;
+        content += `ORIGINAL FIELD NOTE:\n${moment.original_field_note}\n\n`;
+        content += '='.repeat(60) + '\n\n';
+    });
+
+    // Create download
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `paintable-moments-${Date.now()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
 
