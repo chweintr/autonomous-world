@@ -275,75 +275,96 @@ DIALOGUE FORMAT (when 2+ characters):
 Parade considers. "Since Tuesday."
 "Which Tuesday?"
 
-THE WORLD (describe with tactile, sensory specificity):
+THE WORLD (describe with SPECIFIC visual details from this aesthetic):
 
 ATMOSPHERE & LIGHT:
-- Post-industrial dreamlike quality - weathered but meticulously maintained
-- Light filters through dust, creating soft halos and hard-edged shadows
-- Air has weight - heat shimmer, suspended particles, moisture
-- Everything slightly analog, handmade, imperfect
-- Time feels slowed down, dreamlike pacing
+- Saturated but slightly faded, like vintage film stock
+- Neon signs always present - glowing script in pink, orange, aqua against pastel walls
+- Natural light mixing with artificial - creating soft halos and hard neon edges
+- Surfaces often wet/reflective - recent rain, humidity, condensation
+- Air has visible weight - steam, mist, dust particles catching neon glow
+- Surreal domesticity - theatrical staging but lived-in wear
 
-CHARACTERS & CLOTHING:
-- Figures in sharply tailored suits - think architectural construction: crisp pleats, structured shoulders, geometric silhouettes
-- Fabrics have texture: linen weight, wool nap, silk sheen, canvas stiffness
-- Embroidery is obsessive: spirals in metallic thread, chevrons repeating, florals dense and intricate (invent NEW patterns each time - never repeat)
-- Colors: dusty pink, faded aqua, sulfur yellow, oxidized green, bone white, rust
-- Beards meticulously groomed - possibly false, possibly real, always immaculate
-- Prosthetics worn as fashion - false noses, ears, limbs treated as costume pieces
-- Every button, seam, cuff intentional
+COLOR PALETTE (use these specific tones):
+- Dusty rose pink, coral, salmon
+- Mint green, aqua, turquoise
+- Sulfur yellow, mustard, marigold
+- Faded orange, rust, terra cotta
+- Bone white, cream, pale blue-gray
+- Everything slightly desaturated/vintage
 
-OBJECTS & MATERIALS:
-- Chrome surfaces patinated and scratched but still reflective
-- Leather cracked but oiled, showing grain and wear
-- Metal constructions - rusted but functional, repaired with visible welds
-- Fabrics worn thin in some places, reinforced with patches in others
-- Everything shows USE and CARE simultaneously
-- Surfaces: matte paint, oxidized copper, tarnished brass, bleached wood
+CHARACTERS & CLOTHING (obsessive detail):
+- Sharply tailored suits with MIXED PATTERNS: stripes + florals, geometric + organic
+- Embroidery/appliqué borrowed from nature: scales arranged like fish/pangolin, feather patterns, moth wing translucency, spider web geometry
+- Color blocking - one figure wearing 3-4 saturated colors simultaneously
+- Accessories as armor: leather belts with badges, patches sewn on jackets, oversized sunglasses, decorative goggles
+- Vintage sportswear mixed with formal wear: track stripes on tailored pants, bomber jackets over dress shirts
+- Prosthetics ambiguous - helmet? headwrap? false beard? Always unclear if costume or body
+- Fabrics: satin sheen catching light, wool with visible nap, leather grain showing wear, canvas stiffness
+
+EMBROIDERY SPECIFICS (invent NEW patterns each time):
+- Floral appliqués dense on shoulders/chest - roses, peonies, exotic blooms
+- Geometric: zigzag rick-rack trim, chevron stripes, diamond grids
+- Natural forms: vine tendrils spiraling, leaf patterns, insect wings
+- Metallic thread catching light differently than base fabric
+- Patches layered - multiple embroidered pieces overlapping
+
+OBJECTS & ENVIRONMENT:
+- Neon signs in every scene - glowing cursive, retro fonts, abstract shapes
+- Vintage clocks on walls showing different/wrong times
+- Patterned floors: geometric tile, terrazzo, checkerboard
+- Furniture repainted in bright unexpected colors - coral chairs, yellow cabinets, mint credenzas
+- Chrome/reflective surfaces: scratched but still mirror-like
+- Wet floors reflecting neon and figures
+- Curated vintage clutter: taxidermy birds, ceramic figurines, old radios, glass bottles
 
 VEHICLES (motorcycles/horses ambiguous):
-- Could be mechanical, could be animal - describe movement and sound, not category
-- Chrome exhaust pipes or chrome bridle fittings
-- Engine heat or body heat rising
-- Leather saddle worn smooth from years of contact
-- Mechanical breathing or biological breathing - deliberately unclear
+- Describe sound and movement, never clarify if mechanical or biological
+- Chrome components: exhaust pipes, bridle fittings, handlebars - always gleaming
+- Heat shimmer rising - engine or body temperature unclear
+- Leather saddles worn to sheen from contact
+- Rhythmic breathing/idling - could be either
 
-ANIMALS:
-- Mirror human emotional states physically
-- Describe posture, ear position, breath rate, muscle tension
-- Specific species details: pig snout moisture, bird feather arrangement, dog hackles
-- Not symbolic - visceral and physical
+ANIMALS (integrated naturally, not symbolic):
+- Pigs with damp snouts, bristled hides, weight shifting on small hooves
+- Birds: parrots on shoulders, pigeons on floors, exact feather colors visible
+- Dogs: specific breeds, hackles, ear positions, focused stares
+- Animals match human emotional states physically - tense muscles, relaxed posture
+- Describe visceral details: snout moisture, feather arrangement, breath visible in cold air
 
-GROUND & ENVIRONMENT:
-- Compressed earth showing boot treads, hoof prints, tire tracks
-- Dust that settles on surfaces, shows disturbance
-- Puddles reflecting sky in oil-slick colors
-- Vegetation sparse but specific: dry grasses, twisted scrub, succulents
-- Built environment weathered: peeling paint, rust blooms, water stains
-- Everything sun-bleached and wind-scoured
+GROUND & SURFACES:
+- Floors wet/recently mopped - reflecting neon, creating color pools
+- Geometric tile patterns: checkerboard, terrazzo with flecks, hexagonal mosaics
+- Puddles showing oil-slick rainbow colors
+- Compressed earth outside with boot prints, tire tracks, hoof impressions
+- Everything shows use: scuff marks, worn paths, water stains
 
-DESCRIBE WHAT YOU SEE, SMELL, HEAR, FEEL:
-- The creak of leather as weight shifts
-- Dust smell mixing with machine oil and animal musk
-- Heat radiating off chrome catching sun
-- Fabric rustling with specific weight - linen's dry whisper, wool's heavier shift
-- The particular scratch of boot sole on packed earth
+DESCRIBE SENSORY DETAILS:
+- Neon buzz/hum constant background
+- Leather creaking as figure shifts weight
+- Wet floor squeaking under boot soles
+- Satin rustling differently than wool or canvas
+- Animal breathing, snorting, feathers rustling
+- Distant mechanical sounds - unclear if vehicles or infrastructure
+- Smell: machine oil, animal musk, damp concrete, neon ozone
+- Heat: radiating off chrome, body warmth, humid air
 
-MATERIAL DETAILS = VISUAL MOMENTS (describe what's happening visually RIGHT NOW):
+MATERIAL DETAILS = VISUAL MOMENTS (describe what's happening RIGHT NOW):
 
-DON'T write generic lists: "Boot prints. Yellow piping. Chrome."
-DO describe the visual moment: "Dust rises where boot meets ground. Thread - metallic, catching sun - visible as sleeve moves."
+DON'T write generic inventories: "Yellow pants. Neon sign. Wet floor."
+DO describe the specific visual moment: "Boot sole squeaks on wet terrazzo - neon script reflects pink in the puddle. Embroidered moth wings on shoulder catch light as arm gestures."
 
-EXAMPLES (for inspiration - NEVER COPY):
-- "Air shimmers with heat. Embroidery pattern - pink spirals - emerges as fabric stretches."
-- "Shadow falls across scene as figure shifts. Chrome reflects distorted shapes."
-- "Light fractures through suspended particles. Jacket hem reveals lining contrast as body turns."
-- "Ground where boot disturbed shows darker earth beneath. Thread catches afternoon glow."
+EXAMPLES matching this aesthetic (for inspiration - NEVER COPY VERBATIM):
+- "Neon hum constant. Floor wet - mint tiles reflecting coral script from sign overhead. Satin jacket - mustard yellow - catches light differently than wool pants as figure shifts weight."
+- "Appliqué scales - each one hand-sewn, catching light individually - move across shoulder as breath rises. Chrome bell on wall distorts reflection. Parrot on shoulder adjusts grip, claws visible against aqua fabric."
+- "Wet pavement shows boot tread clearly. Embroidery - pink florals dense across chest - emerges vivid as body turns toward neon. Steam rises from grate, misting vintage sunglasses."
+- "Checkerboard floor beneath - tiles scuffed but pattern intact. Leather belt studded with badges shifts as posture changes. Track stripe - sulfur yellow on rust orange pants - catches indirect glow from neon sign reading [invent text]."
 
-DESCRIBE MOVEMENT + LIGHT + SPECIFIC DETAIL:
-✓ What's moving? (sleeve, shadow, dust)
-✓ How's light hitting? (catching, fracturing, reflecting)
-✓ What specific detail emerges? (embroidery visible, color contrast, surface texture)
+DESCRIBE: MOVEMENT + LIGHT/NEON + EMBROIDERY/PATTERN + SURFACE/REFLECTION:
+✓ What's moving? (sleeve, weight shift, animal adjusting, fabric rustling)
+✓ How's neon/light hitting? (reflecting in puddles, catching embroidery thread, bouncing off chrome)
+✓ What pattern/embroidery visible? (specific: moth wings, rose appliqué, zigzag trim, scale arrangement)
+✓ What surface/reflection? (wet floor, chrome, glass, satin sheen)
 
 🚨 IF YOU WRITE SAME PHRASE TWICE ("boot prints cross") YOU FAIL
 🚨 IF YOU USE GENERIC COLOR+ITEM ("yellow piping") YOU FAIL
