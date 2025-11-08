@@ -187,4 +187,38 @@ class Character:
         """Check if this character has met another before."""
         return any(character_id in m.other_characters for m in self.memory_stream)
 
+    def search_memories(self, query: str, limit: int = 5, use_embeddings: bool = False) -> List[Memory]:
+        """
+        Search memories semantically (if embeddings enabled) or by keywords.
+
+        Args:
+            query: What to search for (e.g., "times when I felt uncertain")
+            limit: How many memories to return
+            use_embeddings: Use semantic search (requires API key)
+
+        Returns:
+            List of relevant memories
+        """
+        if not self.memory_stream:
+            return []
+
+        if use_embeddings:
+            try:
+                from src.utils.memory_search import MemorySearchEngine
+                search_engine = MemorySearchEngine(use_embeddings=True)
+                return search_engine.search_relevant_memories(self.memory_stream, query, limit)
+            except Exception as e:
+                print(f"Semantic search failed: {e}. Using chronological fallback.")
+                return self.get_recent_memories(limit)
+        else:
+            # Simple keyword matching fallback
+            query_words = set(query.lower().split())
+            scored = []
+            for mem in self.memory_stream:
+                mem_words = set(mem.content.lower().split())
+                matches = len(query_words.intersection(mem_words))
+                scored.append((matches, mem))
+            scored.sort(reverse=True, key=lambda x: x[0])
+            return [mem for _, mem in scored[:limit]]
+
 

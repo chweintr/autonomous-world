@@ -275,14 +275,59 @@ DIALOGUE FORMAT (when 2+ characters):
 Parade considers. "Since Tuesday."
 "Which Tuesday?"
 
-The world:
-- Bikers in elaborate embroidered clothing (invent specific patterns each time: gold spirals, pink chevrons, aqua florals)
-- Motorcycles/horses are interchangeable and ambiguous
-- Beards: real or prosthetic, immaculately groomed
-- Sharp tailoring: crisp pleats, structured shoulders, sculptural silhouettes
-- Animals mirror their humans' emotional states
-- Pink, aqua, yellow, green, white palette
-- Embroidery, stripes, matte surfaces, metallic accents
+THE WORLD (describe with tactile, sensory specificity):
+
+ATMOSPHERE & LIGHT:
+- Post-industrial dreamlike quality - weathered but meticulously maintained
+- Light filters through dust, creating soft halos and hard-edged shadows
+- Air has weight - heat shimmer, suspended particles, moisture
+- Everything slightly analog, handmade, imperfect
+- Time feels slowed down, dreamlike pacing
+
+CHARACTERS & CLOTHING:
+- Figures in sharply tailored suits - think architectural construction: crisp pleats, structured shoulders, geometric silhouettes
+- Fabrics have texture: linen weight, wool nap, silk sheen, canvas stiffness
+- Embroidery is obsessive: spirals in metallic thread, chevrons repeating, florals dense and intricate (invent NEW patterns each time - never repeat)
+- Colors: dusty pink, faded aqua, sulfur yellow, oxidized green, bone white, rust
+- Beards meticulously groomed - possibly false, possibly real, always immaculate
+- Prosthetics worn as fashion - false noses, ears, limbs treated as costume pieces
+- Every button, seam, cuff intentional
+
+OBJECTS & MATERIALS:
+- Chrome surfaces patinated and scratched but still reflective
+- Leather cracked but oiled, showing grain and wear
+- Metal constructions - rusted but functional, repaired with visible welds
+- Fabrics worn thin in some places, reinforced with patches in others
+- Everything shows USE and CARE simultaneously
+- Surfaces: matte paint, oxidized copper, tarnished brass, bleached wood
+
+VEHICLES (motorcycles/horses ambiguous):
+- Could be mechanical, could be animal - describe movement and sound, not category
+- Chrome exhaust pipes or chrome bridle fittings
+- Engine heat or body heat rising
+- Leather saddle worn smooth from years of contact
+- Mechanical breathing or biological breathing - deliberately unclear
+
+ANIMALS:
+- Mirror human emotional states physically
+- Describe posture, ear position, breath rate, muscle tension
+- Specific species details: pig snout moisture, bird feather arrangement, dog hackles
+- Not symbolic - visceral and physical
+
+GROUND & ENVIRONMENT:
+- Compressed earth showing boot treads, hoof prints, tire tracks
+- Dust that settles on surfaces, shows disturbance
+- Puddles reflecting sky in oil-slick colors
+- Vegetation sparse but specific: dry grasses, twisted scrub, succulents
+- Built environment weathered: peeling paint, rust blooms, water stains
+- Everything sun-bleached and wind-scoured
+
+DESCRIBE WHAT YOU SEE, SMELL, HEAR, FEEL:
+- The creak of leather as weight shifts
+- Dust smell mixing with machine oil and animal musk
+- Heat radiating off chrome catching sun
+- Fabric rustling with specific weight - linen's dry whisper, wool's heavier shift
+- The particular scratch of boot sole on packed earth
 
 MATERIAL DETAILS = VISUAL MOMENTS (describe what's happening visually RIGHT NOW):
 
