@@ -305,12 +305,42 @@ def export_for_lora():
         top_n=top_n
     )
 
-    # Format for Lora training
+    # Format for image generation
     lora_dataset = []
     for idx, prompt in enumerate(prompts):
+        # Build full scene prompt with character descriptions
+        char_ids = prompt.source_interaction.characters_present
+        char_descriptions = []
+
+        for char_id in char_ids:
+            if char_id in current_simulation.world.characters:
+                char = current_simulation.world.characters[char_id]
+                # Extract key physical details
+                char_desc = f"{char.physical_description.split('.')[0]}"  # First sentence
+                char_descriptions.append(f"{char_desc} ({char.name})")
+
+        # Build complete image generation prompt
+        full_prompt = ""
+
+        # Characters and scene
+        if char_descriptions:
+            full_prompt += ", ".join(char_descriptions) + ". "
+
+        # Action/scenario
+        full_prompt += prompt.source_interaction.action_description + " "
+
+        # Material/visual details
+        full_prompt += prompt.color_notes + " "
+
+        # Composition/vantage
+        full_prompt += prompt.composition_description + " "
+
+        # Mood/atmosphere
+        full_prompt += f"{prompt.source_interaction.emotional_temperature.value} mood"
+
         lora_dataset.append({
             'image_id': f'moment_{idx+1}',
-            'prompt': prompt.image_gen_prompt,
+            'prompt': full_prompt,
             'composition': prompt.composition_description,
             'color_palette': prompt.color_notes,
             'metadata': {
