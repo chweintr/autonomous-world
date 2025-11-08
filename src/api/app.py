@@ -276,8 +276,17 @@ def extract_paintable_moments():
     })
 
 
-if __name__ == '__main__':
+# Initialize world state on module load for production (gunicorn)
+try:
     initialize_world()
+    print(f"✓ Initialized world: {len(world_state.characters)} characters, {len(world_state.locations)} locations")
+except Exception as e:
+    print(f"Warning: Could not initialize world state: {e}")
+
+
+if __name__ == '__main__':
+    if world_state is None:
+        initialize_world()
     print("Starting Autonomous World System...")
     print(f"Loaded {len(world_state.characters)} characters")
     print(f"Loaded {len(world_state.locations)} locations")
