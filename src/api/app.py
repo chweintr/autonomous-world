@@ -157,18 +157,18 @@ def get_simulation_status():
     """Get current simulation status."""
     if current_simulation is None:
         return jsonify({'status': 'no_simulation'})
-    
+
     return jsonify({
         'status': 'active' if current_simulation.is_running else 'paused',
-        'current_time': world_state.current_time.isoformat(),
-        'interactions_count': len(world_state.interactions_log),
+        'current_time': current_simulation.world.current_time.isoformat(),
+        'interactions_count': len(current_simulation.world.interactions_log),
         'characters': {
             char.id: {
                 'location': char.current_location,
                 'emotional_state': char.emotional_state.value,
                 'intensity': char.emotional_intensity
             }
-            for char in world_state.characters.values()
+            for char in current_simulation.world.characters.values()
         }
     })
 
@@ -176,12 +176,12 @@ def get_simulation_status():
 @app.route('/api/interactions/recent', methods=['GET'])
 def get_recent_interactions():
     """Get recent interactions."""
-    if world_state is None:
+    if current_simulation is None:
         return jsonify([])
-    
+
     count = request.args.get('count', 10, type=int)
-    interactions = world_state.get_recent_interactions(count)
-    
+    interactions = current_simulation.world.get_recent_interactions(count)
+
     return jsonify([interaction.to_dict() for interaction in interactions])
 
 
@@ -202,17 +202,17 @@ def get_emergence_report():
 @app.route('/api/session/save', methods=['POST'])
 def save_session():
     """Save the current session as field notes."""
-    if world_state is None:
+    if current_simulation is None:
         return jsonify({'status': 'error', 'message': 'No simulation to save'}), 400
-    
+
     data = request.json
     session_name = data.get('name', 'session')
-    
+
     base_dir = os.path.join(os.path.dirname(__file__), '..', '..')
     sessions_dir = os.path.join(base_dir, 'data', 'sessions')
-    
-    filepath = world_state.save_session(session_name, sessions_dir)
-    
+
+    filepath = current_simulation.world.save_session(session_name, sessions_dir)
+
     return jsonify({
         'status': 'success',
         'filepath': filepath,
@@ -237,20 +237,20 @@ def reset_simulation():
 @app.route('/api/paintable/extract', methods=['POST'])
 def extract_paintable_moments():
     """Extract paintable moments and generate prompts."""
-    if world_state is None or len(world_state.interactions_log) == 0:
+    if current_simulation is None or len(current_simulation.world.interactions_log) == 0:
         return jsonify({'status': 'error', 'message': 'No interactions to analyze'}), 400
-    
+
     data = request.json
     top_n = data.get('top_n', 5)
     use_llm = data.get('use_llm', False)
-    
+
     # Create extractor
     api_key = os.environ.get('OPENAI_API_KEY') if use_llm else None
     extractor = PromptExtractor(use_llm=use_llm, api_key=api_key)
-    
+
     # Extract paintable moments
     prompts = extractor.extract_paintable_moments(
-        world_state.interactions_log,
+        current_simulation.world.interactions_log,
         top_n=top_n
     )
     
