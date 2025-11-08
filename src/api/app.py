@@ -114,9 +114,12 @@ def seed_scenario():
         narrative_coherence=config_data.get('narrative_coherence', 'loose'),
         randomness=config_data.get('randomness', 0.25)
     )
-    
+
+    # Get API key for LLM if needed
+    api_key = os.environ.get('OPENAI_API_KEY') if use_llm else None
+
     # Create new simulation
-    current_simulation = Simulation(world_state, config, use_llm=use_llm)
+    current_simulation = Simulation(world_state, config, use_llm=use_llm, llm_api_key=api_key)
     
     # Place characters
     current_simulation.seed_scenario(placements)

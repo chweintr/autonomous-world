@@ -34,8 +34,10 @@ class DescriptionGenerator:
         if use_llm:
             self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
             if not self.api_key:
-                print("Warning: No API key provided. Falling back to template-based generation.")
+                print("⚠️  Warning: No API key provided. Falling back to template-based generation.")
                 self.use_llm = False
+            else:
+                print(f"✓ LLM mode enabled with model: {self.model}")
     
     def generate_interaction_description(
         self,
@@ -78,6 +80,7 @@ class DescriptionGenerator:
             # Try to use OpenAI API (new v1.0+ syntax)
             from openai import OpenAI
             client = OpenAI(api_key=self.api_key)
+            print(f"🤖 Calling LLM ({self.model}) for interaction description...")
             
             # Few-shot examples showing variety AND conversation
             import random
