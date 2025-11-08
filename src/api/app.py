@@ -250,6 +250,85 @@ def analyze_quality():
     })
 
 
+@app.route('/api/map/view', methods=['GET'])
+def get_map_view():
+    """Get current character positions for map visualization."""
+    # Use current_simulation if available, otherwise fall back to world_state
+    active_world = current_simulation.world if current_simulation else world_state
+
+    if active_world is None:
+        return jsonify({'status': 'error', 'message': 'No world initialized'}), 400
+
+    # Build map data
+    locations_data = []
+    for loc in active_world.locations.values():
+        chars_here = active_world.get_characters_at_location(loc.id)
+        locations_data.append({
+            'id': loc.id,
+            'name': loc.name,
+            'characters': [{
+                'id': c.id,
+                'name': c.name,
+                'emotional_state': c.emotional_state.value,
+                'animal': c.animal_companion.name
+            } for c in chars_here],
+            'time_of_day': loc.current_time.value,
+            'weather': loc.current_weather.value
+        })
+
+    return jsonify({
+        'status': 'success',
+        'locations': locations_data
+    })
+
+
+@app.route('/api/paintable/export-lora', methods=['POST'])
+def export_for_lora():
+    """Export paintable moments in format suitable for Lora training."""
+    if current_simulation is None or len(current_simulation.world.interactions_log) == 0:
+        return jsonify({'status': 'error', 'message': 'No interactions to analyze'}), 400
+
+    data = request.json
+    top_n = data.get('top_n', 5)
+    use_llm = data.get('use_llm', False)
+
+    # Create extractor
+    api_key = os.environ.get('OPENAI_API_KEY') if use_llm else None
+    extractor = PromptExtractor(use_llm=use_llm, api_key=api_key)
+
+    # Extract paintable moments
+    prompts = extractor.extract_paintable_moments(
+        current_simulation.world.interactions_log,
+        top_n=top_n
+    )
+
+    # Format for Lora training
+    lora_dataset = []
+    for idx, prompt in enumerate(prompts):
+        lora_dataset.append({
+            'image_id': f'moment_{idx+1}',
+            'prompt': prompt.image_gen_prompt,
+            'composition': prompt.composition_description,
+            'color_palette': prompt.color_notes,
+            'metadata': {
+                'timestamp': prompt.source_interaction.timestamp.isoformat(),
+                'location': prompt.source_interaction.location_name,
+                'characters': prompt.source_interaction.characters_present,
+                'emotional_temperature': prompt.source_interaction.emotional_temperature.value,
+                'why_paintable': prompt.why_paintable
+            },
+            'painter_notes': prompt.painting_prompt,
+            'field_note': prompt.source_interaction.to_field_note()
+        })
+
+    return jsonify({
+        'status': 'success',
+        'dataset': lora_dataset,
+        'count': len(lora_dataset),
+        'format': 'lora_training'
+    })
+
+
 @app.route('/api/paintable/extract', methods=['POST'])
 def extract_paintable_moments():
     """Extract paintable moments and generate prompts."""

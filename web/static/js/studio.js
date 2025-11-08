@@ -367,13 +367,94 @@ on($('#reset'), 'click', async () => {
 
 // Toast notification
 let toastTm;
-function toast(msg){ 
-  const el=$('#toast'); 
-  el.textContent=msg; 
-  el.classList.add('show'); 
-  clearTimeout(toastTm); 
-  toastTm=setTimeout(()=>el.classList.remove('show'),2000); 
+function toast(msg){
+  const el=$('#toast');
+  el.textContent=msg;
+  el.classList.add('show');
+  clearTimeout(toastTm);
+  toastTm=setTimeout(()=>el.classList.remove('show'),2000);
 }
+
+// Update map view
+async function updateMap() {
+  try {
+    const response = await fetch('/api/map/view');
+    const result = await response.json();
+    if (result.status === 'success') {
+      displayMap(result.locations);
+    }
+  } catch (error) {
+    // Silent fail - map is optional
+  }
+}
+
+// Display map
+function displayMap(locations) {
+  const mapContainer = $('#map-view');
+  if (!mapContainer) return;
+
+  let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px;">';
+
+  locations.forEach(loc => {
+    const hasChars = loc.characters.length > 0;
+    const bgColor = hasChars ? 'var(--card-bg)' : 'var(--bg-2)';
+
+    html += `<div style="background: ${bgColor}; padding: 10px; border: 1px solid var(--border); border-radius: 4px;">`;
+    html += `<strong style="font-size: 11px;">${loc.name}</strong><br>`;
+    html += `<small style="color: var(--muted); font-size: 10px;">${loc.time_of_day} · ${loc.weather}</small>`;
+
+    if (hasChars) {
+      html += '<div style="margin-top: 6px;">';
+      loc.characters.forEach(char => {
+        html += `<div style="margin: 3px 0; padding: 4px; background: var(--bg-3); border-radius: 2px; font-size: 10px;">`;
+        html += `<span style="color: var(--accent);">${char.name}</span><br>`;
+        html += `<small style="color: var(--muted);">${char.emotional_state}</small>`;
+        html += `</div>`;
+      });
+      html += '</div>';
+    }
+
+    html += '</div>';
+  });
+
+  html += '</div>';
+  mapContainer.innerHTML = html;
+}
+
+// Export for Lora training
+async function exportForLora() {
+  try {
+    const useLLM = $('#useLLM')?.checked || false;
+
+    const response = await fetch('/api/paintable/export-lora', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ top_n: 5, use_llm: useLLM })
+    });
+
+    const result = await response.json();
+
+    if (result.status === 'success') {
+      const blob = new Blob([JSON.stringify(result.dataset, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `lora-dataset-${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      toast(`Exported ${result.count} moments for Lora`);
+    }
+  } catch (error) {
+    console.error('Error exporting for Lora:', error);
+    toast('Run simulation first');
+  }
+}
+
+// Update map every 3 seconds
+setInterval(updateMap, 3000);
 
 // Expose for custom events (Phase 2)
 window.AgentWorldsUI = {

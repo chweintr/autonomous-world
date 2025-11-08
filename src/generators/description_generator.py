@@ -97,8 +97,10 @@ class DescriptionGenerator:
                     few_shot_example,  # Show example with actual dialogue
                     {"role": "user", "content": prompt}
                 ],
-                temperature=1.2,  # VERY high for creative dialogue
-                max_tokens=350
+                temperature=1.4,  # MAXIMUM creativity - force variety
+                max_tokens=350,
+                presence_penalty=0.6,  # Penalize repetition heavily
+                frequency_penalty=0.8   # Strong penalty for repeated words
             )
             
             result = response.choices[0].message.content
@@ -205,40 +207,48 @@ Format as JSON:
     
     def _get_system_prompt(self) -> str:
         """System prompt for LLM."""
-        return """You are writing a surreal screenplay. Characters MUST speak actual dialogue when together.
+        return """You are a creative writer crafting UNIQUE, VARIED field notes. Each scene must feel different.
 
-CRITICAL: Never write "words are exchanged" or "they talk" - write the ACTUAL WORDS IN QUOTES.
+🚨 CRITICAL RULES:
+1. NEVER repeat the same scene twice
+2. NEVER use "uncertain" more than once in 10 scenes
+3. NEVER write "words are exchanged" - write ACTUAL DIALOGUE with quotes
+4. VARY your vocabulary - if you used a word recently, find a synonym
+5. VARY emotional temperatures - cycle through: tense, charged, exuberant, melancholic, ritual, aggressive, tender, ruptured, playful
+6. DO THE CREATIVE WORK - embellish, invent specific details, make each moment distinctive
 
-Example of CORRECT format:
-Measurer: "2.3 meters between us."
-Tuesday: "To what?"
-Measurer: "The truth and your suitcase."
+Your job is to SURPRISE with specificity. Not to describe blandly.
 
-Write lean and specific. Think: Nabokov's precision meets accessible prose. Never overwrought, never romance novel.
+DIALOGUE FORMAT (when 2+ characters):
+"How long?" Measurer asks.
+Parade considers. "Since Tuesday."
+"Which Tuesday?"
 
 The world:
-- Bikers in elaborate embroidered clothing (nonsensical patterns, formal tailoring)
-- Motorcycles that are horses, horses that are motorcycles (sometimes both, sometimes neither)
-- Real and prosthetic beards (groomed, indistinguishable)
-- Sharp tailoring applied absurdly - structured garments, crisp pleats, sculptural forms
-- Animals externalize their companions' emotions
-- Photographic quality - describe like you're framing a shot
-- Pink, aqua, yellow, green palette (NOT desert browns)
-- Varied materials: embroidered panels, striped sleeves, matte navy, metallic accents, woven textures
+- Bikers in elaborate embroidered clothing (invent specific patterns each time: gold spirals, pink chevrons, aqua florals)
+- Motorcycles/horses are interchangeable and ambiguous
+- Beards: real or prosthetic, immaculately groomed
+- Sharp tailoring: crisp pleats, structured shoulders, sculptural silhouettes
+- Animals mirror their humans' emotional states
+- Pink, aqua, yellow, green, white palette
+- Embroidery, stripes, matte surfaces, metallic accents
 
-Write with restraint:
-- SHORT sentences when possible
-- ONE specific detail, not three adjectives
-- Include dialogue when characters interact (use quotes)
-- Strange is normal, no explanation
-- Specific materials (embroidery pattern, stripe width, beard texture)
-- What someone would see, economically described
-- Present tense, direct
+VARY YOUR MATERIAL DETAILS:
+Don't repeat. Invent new combinations each time:
+- "Pink herringbone. Wool weight."
+- "Aqua chain-stitch on white linen. Crisp."
+- "Yellow piping catches raking light. Matte navy."
+- "Green embroidered spirals. Metallic thread."
 
-Example of good: "The figure in navy with gold braid sits on the motorcycle. Or the horse. The beard is styled."
-Example of bad: "The tall, weathered figure in the carefully tailored navy suit adorned with gleaming gold braid..."
+VARY YOUR LIGHTING:
+- God rays at low angle
+- Diffuse overcast glow
+- Raking sidelight, harsh shadows
+- Direct overhead, high contrast
+- Splintered through clouds
+- Heavy atmosphere, low value
 
-Focus: gesture, dialogue, pattern, color. Keep it lean."""
+BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
     
     def _parse_llm_response(self, response: str) -> tuple[str, str, EmotionalTemperature]:
         """Parse LLM JSON response."""

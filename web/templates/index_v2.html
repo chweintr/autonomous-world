@@ -91,6 +91,22 @@
 
     <!-- CENTER: Field Notes -->
     <section class="panel notes" id="notesPanel">
+      <!-- Map View -->
+      <div class="section">
+        <div class="scene-bar">
+          <div class="stack">
+            <div class="scene-label">Map View</div>
+          </div>
+        </div>
+        <div id="map-view" style="padding: 12px;">
+          <div style="color: var(--muted); text-align: center; padding: 20px; font-style: italic;">
+            Map will update during simulation...
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin: 12px 0;">
+
       <div class="section">
         <div class="scene-bar">
           <div class="stack">
@@ -111,7 +127,10 @@
       <section class="section">
         <div class="section-head">
           <h2>Paintable Moments</h2>
-          <button id="extractMoments" class="btn small ghost">Extract</button>
+          <div style="display: flex; gap: 8px;">
+            <button id="extractMoments" class="btn small ghost">Extract</button>
+            <button onclick="exportForLora()" class="btn small ghost">Lora Export</button>
+          </div>
         </div>
         <div class="report-body" id="paintableBody">
           <div style="color: var(--muted); text-align: center; padding: 20px; font-style: italic;">

@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadLocations();
     setupCharacterPlacements();
     updateStatus();
+    // Update map every 5 seconds during simulation
+    setInterval(updateMap, 5000);
 });
 
 // Load characters from API
@@ -441,12 +443,105 @@ function displayPaintableMoments(moments) {
     // Scroll to top
     container.scrollTop = 0;
 
-    // Add download button
+    // Add download buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.marginTop = '20px';
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.gap = '10px';
+
     const downloadBtn = document.createElement('button');
     downloadBtn.textContent = 'Download Paintable Moments';
     downloadBtn.onclick = () => downloadPaintableMoments(moments);
-    downloadBtn.style.marginTop = '20px';
-    container.appendChild(downloadBtn);
+
+    const loraBtn = document.createElement('button');
+    loraBtn.textContent = 'Export for Lora Training';
+    loraBtn.onclick = () => exportForLora();
+
+    buttonContainer.appendChild(downloadBtn);
+    buttonContainer.appendChild(loraBtn);
+    container.appendChild(buttonContainer);
+}
+
+// Export for Lora training
+async function exportForLora() {
+    try {
+        const useLLM = document.getElementById('use-llm').checked;
+
+        const response = await fetch('/api/paintable/export-lora', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ top_n: 5, use_llm: useLLM })
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            // Download as JSON for Lora training
+            const blob = new Blob([JSON.stringify(result.dataset, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lora-dataset-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            alert(`Exported ${result.count} moments for Lora training`);
+        } else {
+            alert('Error exporting: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error exporting for Lora:', error);
+        alert('Error exporting for Lora training.');
+    }
+}
+
+// Update map view
+async function updateMap() {
+    try {
+        const response = await fetch('/api/map/view');
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            displayMap(result.locations);
+        }
+    } catch (error) {
+        // Silent fail - map is optional
+    }
+}
+
+// Display simple map
+function displayMap(locations) {
+    const mapContainer = document.getElementById('map-view');
+    if (!mapContainer) return; // Map container might not exist on all pages
+
+    let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">';
+
+    locations.forEach(loc => {
+        const hasChars = loc.characters.length > 0;
+        const bgColor = hasChars ? '#2a2a2a' : '#1a1a1a';
+
+        html += `<div style="background: ${bgColor}; padding: 10px; border: 1px solid #444; border-radius: 4px;">`;
+        html += `<strong>${loc.name}</strong><br>`;
+        html += `<small style="color: #888;">${loc.time_of_day} · ${loc.weather}</small>`;
+
+        if (hasChars) {
+            html += '<div style="margin-top: 8px;">';
+            loc.characters.forEach(char => {
+                html += `<div style="margin: 4px 0; padding: 4px; background: #333; border-radius: 2px;">`;
+                html += `<span style="color: #4ecdc4;">${char.name}</span><br>`;
+                html += `<small style="color: #999;">${char.emotional_state} · with ${char.animal}</small>`;
+                html += `</div>`;
+            });
+            html += '</div>';
+        }
+
+        html += '</div>';
+    });
+
+    html += '</div>';
+    mapContainer.innerHTML = html;
 }
 
 // Download paintable moments as text file
