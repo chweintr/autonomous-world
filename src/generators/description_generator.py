@@ -318,13 +318,25 @@ EMBROIDERY SPECIFICS (invent NEW patterns each time):
 - Patches layered - multiple embroidered pieces overlapping
 
 OBJECTS & ENVIRONMENT:
+
+OUTDOOR/ROADSIDE SPACES:
 - Neon signs in every scene - glowing cursive, retro fonts, abstract shapes
-- Vintage clocks on walls showing different/wrong times
-- Patterned floors: geometric tile, terrazzo, checkerboard
-- Furniture repainted in bright unexpected colors - coral chairs, yellow cabinets, mint credenzas
-- Chrome/reflective surfaces: scratched but still mirror-like
-- Wet floors reflecting neon and figures
-- Curated vintage clutter: taxidermy birds, ceramic figurines, old radios, glass bottles
+- Wet floors/pavement reflecting neon and figures
+- Roadside structures: motels, gas stations, industrial buildings
+- Furniture left outdoors, weathered but maintained
+
+INTERIOR SPACES (bathrooms, kitchens - MAXIMALIST ASSEMBLAGE):
+- **Every surface covered with objects** - walls, floors, ceilings dense with found objects
+- Vintage fixtures: cast iron stoves, clawfoot tubs, pedestal sinks, toilets
+- Mint/turquoise tile walls (small square tiles, geometric patterns)
+- **Animals inhabiting infrastructure**: alligators in bathtubs, cats in stove compartments, birds on fixtures
+- Neon signs INSIDE rooms (pink hearts, cursive script)
+- Tropical plants dense in bathrooms (palms, cacti, trailing vines)
+- Vintage objects layered: rotary phones, clocks, mirrors, frames
+- Gothic baroque mixed with pastels: ornate black stoves with gold decoration
+- Plumbing exposed and decorative - pipes visible, fixtures sculptural
+- Water-filled spaces: bathtubs as aquariums, puddles reflecting light
+- Cabinet of curiosities aesthetic - maximalist, no negative space
 
 VEHICLES (motorcycles/horses ambiguous):
 - Describe sound and movement, never clarify if mechanical or biological

@@ -1,0 +1,30 @@
+{
+  "id": "loc_stove_room",
+  "name": "The Stove Room",
+  "description": "Interior space dominated by ornate cast iron stove—black with gold baroque decoration (vines, scrollwork, faces in the metalwork). Stove compartments open, creating caves. Pink neon heart mounted above (casts magenta glow). Walls dense with objects: frames, mounted curiosities, vintage kitchenware. Floor covered in arranged objects (not clutter—deliberate assemblage). Gothic romantic darkness mixed with neon. Everything encrusted.",
+  "lighting_quality": "Dark with concentrated glows. Neon heart (pink/magenta), flames in stove bottom (orange flicker), single vintage bulb overhead (dim amber). Shadows deep. Metallic surfaces catch and throw light unpredictably.",
+  "temperature_range": "Warm near stove (radiating heat), cooler at edges. Temperature stratified—hot above, cool at floor.",
+  "acoustic_quality": "Muffled and dense. Objects absorb sound. Occasional metallic ping from cooling stove. Fire crackle. Intimate.",
+  "objects_present": [
+    "Ornate cast iron stove (black with gold decoration, multiple compartments)",
+    "Pink neon heart sign (mounted above stove, buzzing faintly)",
+    "Vintage kettle (sitting on stove top, tarnished copper)",
+    "Enamelware dishes (chipped, stacked on surfaces)",
+    "Framed portraits (various sizes, subjects unclear)",
+    "Mounted curiosities (small skulls, preserved insects, feathers)",
+    "Chains hanging from ceiling (purpose unclear, decorative?)",
+    "Ornate mirror (baroque frame, reflecting neon and flames)",
+    "Small tables/stools (legs reinforced, surfaces covered)"
+  ],
+  "architectural_features": [
+    "Brick walls (exposed, painted over in dark rust color)",
+    "Wooden floor (aged, gaps between boards)",
+    "Pipes visible overhead (running along ceiling, wrapped in fabric?)",
+    "No windows (or covered—light only from stove/neon/bulb)",
+    "Doorway (arched, leading to darkness beyond)",
+    "High ceiling (vaulted, disappears into shadows)"
+  ],
+  "atmosphere": "Gothic maximalist warmth. A temple to the stove. Space organized around heat source. Everything arranged with intention—this is someone's collection, someone's shrine. Dark romantic. Simultaneously cozy and unsettling. The stove feels alive, watching.",
+  "current_time": "night",
+  "current_weather": "cold"
+}

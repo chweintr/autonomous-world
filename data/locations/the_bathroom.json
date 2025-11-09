@@ -1,0 +1,31 @@
+{
+  "id": "loc_bathroom",
+  "name": "The Bathroom",
+  "description": "Interior space with mint tile walls (small squares, some cracked). Clawfoot bathtub holds standing water—unclear if functional or intentional. Every surface covered: walls layered with frames, mirrors, rotary phone mounted, vintage clock stopped at 3:47. Floor damp, objects arranged deliberately—ceramic figurines, glass bottles, small trinkets. Tropical plant in corner (palm, reaching ceiling). Pedestal sink, plumbing exposed and rusted decoratively. Neon sign visible through doorway casting pink glow.",
+  "lighting_quality": "Dim and layered. Neon glow from adjacent room (pink), vintage bulb overhead (amber), water reflects light creating moving patterns on ceiling.",
+  "temperature_range": "Humid and cool. Water evaporating. Air heavy.",
+  "acoustic_quality": "Muffled. Water dripping occasionally. Objects absorb sound. Intimate echoes.",
+  "objects_present": [
+    "Clawfoot bathtub (filled with water, unclear depth)",
+    "Tropical palm plant (reaching ceiling, leaves dusty)",
+    "Rotary phone (mounted on wall, receiver off hook)",
+    "Vintage mirrors (three different sizes, tarnished)",
+    "Ceramic figurines (arranged on ledges, rim of tub)",
+    "Glass bottles (various colors, some with water)",
+    "Small clock (stopped, ornate frame)",
+    "Pedestal sink (porcelain, basin stained)",
+    "Toilet (visible, covered in trinkets on tank)",
+    "Driftwood piece (leaning in corner)"
+  ],
+  "architectural_features": [
+    "Mint/turquoise tile walls (small square tiles, some loose/cracked)",
+    "Exposed plumbing (copper pipes, verdigris patina)",
+    "Single window (frosted glass, overgrown with vine outside)",
+    "Doorway (no door, neon glow from beyond)",
+    "Floor damp (puddles, unclear source)",
+    "High ceiling (plaster peeling, water stains)"
+  ],
+  "atmosphere": "Maximalist and inhabited. A space repurposed. Not abandoned—actively maintained through accumulation. Objects have chosen to stay here. Water as permanent feature. Feels both domestic and aquatic.",
+  "current_time": "evening",
+  "current_weather": "humid"
+}

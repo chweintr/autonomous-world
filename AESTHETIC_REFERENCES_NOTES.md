@@ -160,3 +160,85 @@ From reference image - motorcycle tank has PAINTED/EMBROIDERED floral patterns. 
 - Not factory—customized, hand-done
 
 Example: "Motorcycle tank painted with coral florals overlapping mint leaves, chrome exhaust reflecting twilight, leather seat tooled with spiral pattern"
+
+## Interior Spaces - Found Object Assemblage Aesthetic
+
+**NEW references added Nov 9** show INTERIOR SPACES with completely different energy:
+
+### Bathrooms as Primary Interior Setting
+- **Mint/turquoise tile walls** (small square tiles - same color as clothing but as architecture)
+- Vintage fixtures: clawfoot bathtubs, pedestal sinks, toilets, exposed plumbing
+- **Every surface COVERED** - maximalist assemblage, no negative space
+- Water as element: bathtubs filled, puddles on floor, reflections everywhere
+- Tropical plants dense: palms in corners, trailing vines, cacti
+- Mirrors and frames layered on walls
+- Rotary phones, clocks, vintage objects mounted/displayed
+
+### Animals Inhabiting Infrastructure
+**Critical distinction**: Animals don't just ACCOMPANY humans - they INHABIT the spaces:
+- **Albino alligators swimming in bathtubs** (bathtub as aquarium)
+- **Cats sitting inside stove compartments** (stove as den)
+- **Flamingos perched on driftwood** mounted above fixtures
+- Birds on toilet tanks, sink edges
+- Infrastructure repurposed as animal habitat
+
+### Kitchen/Stove Imagery
+- **Ornate cast iron stoves** (black with gold baroque decoration)
+- Gothic elements: skulls visible, bats, dark romantic aesthetic
+- **Neon hearts** mounted above stoves (pink neon in domestic space)
+- Stoves as vertical sculptures - viewed from above/aerial
+- Flames visible at bottom (orange/warm glow)
+- Animals nested in compartments
+
+### Maximalist Density
+**Complete opposite of minimalism**:
+- Horror vacui (fear of empty space) - every inch decorated
+- Objects layered: trinkets, found objects, assemblage art
+- Floor covered in arrangements of small objects
+- Walls dense with frames, mirrors, mounted curiosities
+- Cabinet of curiosities aesthetic
+- Nothing functional - everything sculptural/inhabited
+
+### Color Palette (Same but Different Context)
+- **Mint/turquoise** = tile walls, water color
+- **Coral/pink** = flamingos, neon hearts, decorative elements
+- **Rust/orange** = stove ornamentation, flames
+- **Gothic dark** = black stoves, shadows, baroque elements
+- **Gold/brass** = ornate stove decoration, fixtures, frames
+
+### Lighting in Interiors
+- Neon signs INSIDE rooms (not just exterior)
+- Vintage bulbs, ornate fixtures
+- Water reflections creating moving light
+- Darker overall than outdoor scenes
+- Gothic atmospheric lighting mixed with neon glow
+
+### Domestic Fixtures as Found Art
+- Stoves, tubs, sinks, toilets = sculptural objects
+- Not hidden or utilitarian - celebrated as art
+- Plumbing exposed and decorative
+- Vintage appliances repurposed
+- Everything encrusted with decoration
+
+### For Cinematic World Translation
+
+**Art references show**: Surreal maximalist interior with alligators in bathtub, every surface covered, pink flamingos
+
+**Cinematic world version**: Interior bathroom with mint tile walls showing age. Clawfoot tub holds water, unclear if functional. Animal (alligator? large reptile?) resting in tub. Walls layered with vintage objects - rotary phone mounted, small mirror reflecting neon from adjacent room. Tropical plant in corner. Floor damp, objects arranged deliberately.
+
+**Keep**:
+- Mint tile color
+- Vintage fixtures
+- Animals in unexpected places
+- Dense object layering
+- Neon in interiors
+
+**Tone down**:
+- Surreal density (make slightly sparser)
+- Perfect maintenance (show wear)
+- Impossible animal combinations
+
+**Make plausible**:
+- Why is bathtub filled? (Broken plumbing? Intentional?)
+- Why animal there? (Lives there? Trapped? Chose it?)
+- Objects have history (not just arranged - accumulated)
