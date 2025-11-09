@@ -168,7 +168,7 @@ class Simulation:
         animals_present = self.world.get_animals_at_location(character.current_location)
         
         # Generate description
-        action_desc, material_details, emotional_temp = self.description_generator.generate_interaction_description(
+        action_desc, material_details, emotional_temp, cinematic_report = self.description_generator.generate_interaction_description(
             interaction_type,
             location,
             chars_present,
@@ -176,7 +176,7 @@ class Simulation:
             location.current_time.value,
             location.current_weather.value
         )
-        
+
         # Create interaction
         interaction = Interaction(
             timestamp=self.world.current_time,
@@ -188,6 +188,7 @@ class Simulation:
             action_description=action_desc,
             material_details=material_details,
             emotional_temperature=emotional_temp,
+            cinematic_report=cinematic_report,
             time_of_day=location.current_time.value,
             weather=location.current_weather.value,
             environmental_context=location.get_environmental_description(),

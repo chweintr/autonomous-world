@@ -1,0 +1,31 @@
+{
+  "id": "cheerleader",
+  "name": "The Cheerleader",
+  "archetype": "The Cheerleader",
+  "physical_description": "Old woman, white hair cropped short. Wears vintage cheerleader uniform—pleated skirt in faded coral and mint, matching vest with school letters peeling off. Knee-high white boots, scuffed but polished. Pom-poms attached to belt, never used. Face lined but animated. Moves with unexpected energy.",
+  "backstory": "Arrived wearing the uniform. Won't say which school, which team, which year. When asked, responds: 'The important game hasn't happened yet.' Attends events that don't exist. Cheers for outcomes already decided. The uniform shows decades of wear but is maintained obsessively—each stitch repaired, each letter re-glued.",
+  "motivational_drivers": [
+    "Compulsion to encourage others toward undefined goals",
+    "Announces scores for games not being played",
+    "Performs routines at inappropriate moments",
+    "When asked about the past: 'We're still in the third quarter'",
+    "Treats mundane encounters as championship events",
+    "Keeps score of things that aren't competitions"
+  ],
+  "relationships": {
+    "parade": "Mutual recognition of ceremony. Both create rituals where none exist.",
+    "knows_too_much": "Tension. The Knowing One wants the score. Cheerleader won't tell.",
+    "measurer": "Strange alliance. Both quantify, but different metrics."
+  },
+  "animal_companion": {
+    "species": "dog",
+    "name": "Rally",
+    "description": "Medium-sized terrier mix, wiry tan coat. Wears small vest matching Cheerleader's colors. Barks in rhythmic patterns—three short, two long—like coded signals. Jumps in sync with Cheerleader's movements.",
+    "externalized_impulse": "Persistent optimism and belief in victory despite evidence",
+    "temperament": "Energetic, rhythmic, encouraging",
+    "current_state": "excited"
+  },
+  "emotional_state": "exuberant",
+  "current_location": null,
+  "emotional_intensity": 0.7
+}

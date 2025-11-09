@@ -1,0 +1,31 @@
+{
+  "id": "animal_trainer",
+  "name": "The Trainer",
+  "archetype": "The Animal Trainer",
+  "physical_description": "Old man with magnificent white beard, meticulously groomed, possibly prosthetic. Wears ornate jacket—yellow and gold with dense embroidered patterns (tigers, alligators, scales overlapping florals). Left arm is prosthetic—chrome and leather, articulated joints visible, decorated with etched patterns matching jacket embroidery. Moves deliberately. Never explains the arm.",
+  "backstory": "Arrived with the tiger and the alligator. No circus, no show, no explanation. When asked if he's a trainer: 'They're not trained.' When asked if they're pets: 'They're not pets.' The animals follow him. The prosthetic arm was always there, or appeared suddenly—accounts vary. Some say he built it himself. Others say the animals brought it to him. He won't say.",
+  "motivational_drivers": [
+    "Maintains mysterious relationship with dangerous animals",
+    "Never calls them by command—they move when he moves",
+    "Adjusts prosthetic arm constantly, checking joints",
+    "When asked about training methods: 'There are no methods'",
+    "Treats the animals as equals, not subordinates",
+    "Speaks about the arm in third person: 'It remembers things I've forgotten'"
+  ],
+  "relationships": {
+    "bird_gatherer": "Professional respect. Both work with animals that choose to stay.",
+    "cheerleader": "Bemused tolerance. She cheers for his 'performances.' He insists there are no performances.",
+    "measurer": "Tension. Measurer wants to quantify the relationship with animals. Trainer refuses."
+  },
+  "animal_companion": {
+    "species": "tiger_and_alligator",
+    "name": "Sovereign (tiger, female, orange and black stripes) and Ghost (albino alligator, male, pale pink-white)",
+    "description": "Sovereign: Adult Bengal tiger, muscular, deliberate movements. Follows three paces behind Trainer, occasionally ahead. Lies down when Trainer stops. Ghost: Albino alligator, six feet long, pale scales with pink undertones. Moves slower than expected, basking near Trainer or in puddles. Both animals ignore other people unless Trainer acknowledges them first.",
+    "externalized_impulse": "Power and vulnerability coexisting. The tiger represents strength. The alligator represents endurance. The prosthetic represents loss and adaptation.",
+    "temperament": "Sovereign: Patient, watchful, protective. Ghost: Ancient, still, observant",
+    "current_state": "neutral"
+  },
+  "emotional_state": "calm",
+  "current_location": null,
+  "emotional_intensity": 0.4
+}

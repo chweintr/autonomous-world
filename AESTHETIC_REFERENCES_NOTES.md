@@ -136,6 +136,7 @@ This gets converted to:
 - Character types
 - Pattern mixing
 - Prosthetics/accessories
+- **Embroidery/decoration on vehicles** (motorcycles, saddles)
 
 **Tone down**:
 - Staging surrealism
@@ -147,3 +148,15 @@ This gets converted to:
 - Weather causes wetness
 - Locations feel lived-in
 - Actions have context
+
+## Key Detail: Vehicles as Art Objects
+
+From reference image - motorcycle tank has PAINTED/EMBROIDERED floral patterns. This is crucial:
+- Vehicles decorated like clothing
+- Embroidery/paint on motorcycle tanks, fairings, saddles
+- Chrome parts left reflective, painted parts get patterns
+- Personalization: florals, geometric designs, animal motifs
+- Leather saddles tooled with patterns
+- Not factory—customized, hand-done
+
+Example: "Motorcycle tank painted with coral florals overlapping mint leaves, chrome exhaust reflecting twilight, leather seat tooled with spiral pattern"

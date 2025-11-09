@@ -45,12 +45,13 @@ class Interaction:
     action_description: str  # 2-3 sentences, vivid and specific
     material_details: str  # what would be visible
     emotional_temperature: EmotionalTemperature
-    
+    cinematic_report: str = ""  # Camera movement, framing, scene composition
+
     # Metadata
     time_of_day: str
     weather: str
     environmental_context: str
-    
+
     # Flags for emergence tracking
     is_unexpected: bool = False
     pattern_tags: List[str] = field(default_factory=list)
@@ -58,18 +59,22 @@ class Interaction:
     def to_field_note(self) -> str:
         """Format interaction as a field note."""
         time_str = self.timestamp.strftime("%H:%M")
-        
+
         note = f"[{time_str} - {self.location_name} - {self.time_of_day.title()}]\n"
         note += f"{self.action_description}\n\n"
         note += f"Material details: {self.material_details}\n"
+
+        if self.cinematic_report:
+            note += f"\nCinematic framing: {self.cinematic_report}\n"
+
         note += f"Emotional temperature: {self.emotional_temperature.value.title()}"
-        
+
         if self.is_unexpected:
             note += " [EMERGENT BEHAVIOR]"
-        
+
         if self.pattern_tags:
             note += f"\nPatterns: {', '.join(self.pattern_tags)}"
-        
+
         return note
     
     def to_dict(self) -> dict:
@@ -83,6 +88,7 @@ class Interaction:
             "animals_present": self.animals_present,
             "action_description": self.action_description,
             "material_details": self.material_details,
+            "cinematic_report": self.cinematic_report,
             "emotional_temperature": self.emotional_temperature.value,
             "time_of_day": self.time_of_day,
             "weather": self.weather,

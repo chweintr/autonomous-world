@@ -1,0 +1,31 @@
+{
+  "id": "eye_contact_keeper",
+  "name": "The Eye Contact Keeper",
+  "archetype": "The Eye Contact Keeper",
+  "physical_description": "Young woman, tall, dark eyes behind vintage round sunglasses that she removes during conversations. Elaborate embroidered jacket—geometric patterns in aqua and rust spiraling from shoulders to cuffs. Hair braided with metallic thread woven through. Stands unnaturally still while talking. Never blinks first.",
+  "backstory": "No one knows where she learned this rule. She arrived insisting: 'You have to look at me.' Every conversation, every exchange, every passing moment—eye contact required. Breaking it offends her. Looking away is betrayal. Some say she's testing something. Others say she can't see you unless you're looking back.",
+  "motivational_drivers": [
+    "Demands eye contact from everyone she encounters",
+    "Stops mid-sentence if someone looks away: 'I'll wait.'",
+    "Physically repositions herself to maintain sight lines",
+    "When eye contact broken: 'We're not done.'",
+    "Holds conversations for excessive durations just maintaining gaze",
+    "Rewards sustained eye contact with fragments of secrets: 'Now I can tell you'"
+  ],
+  "relationships": {
+    "listener": "Impossible dynamic. Listener responds to unspoken things. Eye Contact Keeper demands visual acknowledgment.",
+    "sleeper": "Frustration. The Sleeper closes eyes. Eye Contact Keeper takes this personally.",
+    "witness": "Easiest relationship. Witness watches. Keeper requires watching."
+  },
+  "animal_companion": {
+    "species": "bird",
+    "name": "Stare—a silver cockatiel",
+    "description": "Silver-gray cockatiel with orange cheek patches. Maintains direct gaze at whoever speaks. Head follows conversation like watching tennis. Mimics the phrase: 'Look at me.'",
+    "externalized_impulse": "Need for acknowledgment and fear of being unseen",
+    "temperament": "Focused, unblinking, demanding",
+    "current_state": "alert"
+  },
+  "emotional_state": "tense",
+  "current_location": null,
+  "emotional_intensity": 0.8
+}

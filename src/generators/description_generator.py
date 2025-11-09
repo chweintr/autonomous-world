@@ -52,12 +52,12 @@ class DescriptionGenerator:
         action_context: str,
         time_of_day: str,
         weather: str
-    ) -> tuple[str, str, EmotionalTemperature]:
+    ) -> tuple[str, str, EmotionalTemperature, str]:
         """
         Generate vivid description of an interaction.
-        
+
         Returns:
-            (action_description, material_details, emotional_temperature)
+            (action_description, material_details, emotional_temperature, cinematic_report)
         """
         if self.use_llm:
             return self._generate_with_llm(interaction_type, location, characters,
@@ -238,13 +238,21 @@ Keep it SHORT (2-8 words per line). Weird is good.
 
 3. EMOTIONAL TEMPERATURE: tense, exuberant, uncertain, charged, melancholic, aggressive, tender, ritual, or ruptured
 
+4. CINEMATIC FRAMING: Describe camera movement and scene composition (1-2 sentences):
+   - Camera position/movement: "Camera slowly zooming out", "Close-up on hands", "Wide shot revealing", "Pan across scene", "Tracking shot following figure"
+   - Scene composition: "Figures positioned in foreground with industrial structures behind", "Centered composition", "Off-center framing with negative space"
+   - Lighting description: "Twilight glow backlighting figures", "Harsh overhead light creating shadows", "Golden hour warming scene"
+
+   Example: "The young woman revs her motorcycle engine, her vibrant pink-and-gold jacket catching twilight's glow as the bearded man adjusts his ornate costume nearby. A tiger prowls closer through the dusky landscape, distant structures silhouetted against the deepening sky, the camera slowly zooming out to capture the theatrical ensemble."
+
 IF YOU WRITE "WORDS ARE EXCHANGED" OR "THEY TALK" YOU HAVE FAILED. Write actual dialogue with quotation marks.
 
 Format as JSON:
 {{
   "action": "...",
   "material_details": "...",
-  "emotional_temperature": "..."
+  "emotional_temperature": "...",
+  "cinematic_framing": "..."
 }}
 """
         return prompt
@@ -372,7 +380,7 @@ DESCRIBE: MOVEMENT + LIGHT/NEON + EMBROIDERY/PATTERN + SURFACE/REFLECTION:
 
 BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
     
-    def _parse_llm_response(self, response: str) -> tuple[str, str, EmotionalTemperature]:
+    def _parse_llm_response(self, response: str) -> tuple[str, str, EmotionalTemperature, str]:
         """Parse LLM JSON response."""
         try:
             # Try to parse as JSON
@@ -381,11 +389,12 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
                 json_end = response.rindex("}") + 1
                 json_str = response[json_start:json_end]
                 data = json.loads(json_str)
-                
+
                 action = data.get("action", "")
                 material = data.get("material_details", "")
                 temp_str = data.get("emotional_temperature", "uncertain").lower()
-                
+                cinematic = data.get("cinematic_framing", "")
+
                 # Map to EmotionalTemperature enum
                 temp_mapping = {
                     "tense": EmotionalTemperature.TENSE,
@@ -399,10 +408,10 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
                     "ritual": EmotionalTemperature.RITUAL,
                     "ruptured": EmotionalTemperature.RUPTURED
                 }
-                
+
                 temp = temp_mapping.get(temp_str, EmotionalTemperature.UNCERTAIN)
-                
-                return action, material, temp
+
+                return action, material, temp, cinematic
         except:
             pass
         
@@ -410,7 +419,7 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         lines = response.strip().split("\n")
         action = lines[0] if lines else ""
         material = lines[1] if len(lines) > 1 else ""
-        return action, material, EmotionalTemperature.UNCERTAIN
+        return action, material, EmotionalTemperature.UNCERTAIN, ""
     
     def _generate_with_template(
         self,
@@ -506,15 +515,41 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         
         # Emotional temperature based on characters' states
         avg_intensity = sum(c.emotional_intensity for c in characters) / len(characters)
-        
+
         if avg_intensity > 0.7:
-            temp = random.choice([EmotionalTemperature.TENSE, EmotionalTemperature.CHARGED, 
+            temp = random.choice([EmotionalTemperature.TENSE, EmotionalTemperature.CHARGED,
                                 EmotionalTemperature.AGGRESSIVE])
         elif avg_intensity < 0.3:
             temp = random.choice([EmotionalTemperature.UNCERTAIN, EmotionalTemperature.MELANCHOLIC])
         else:
             temp = random.choice([EmotionalTemperature.UNCERTAIN, EmotionalTemperature.TENDER,
                                 EmotionalTemperature.PLAYFUL])
-        
-        return action, material, temp
+
+        # Generate cinematic framing
+        camera_movements = [
+            "Camera slowly zooming out to capture the full scene",
+            "Close-up on the figures, then pulling back",
+            "Wide shot revealing the landscape beyond",
+            "Pan across the scene from left to right",
+            "Tracking shot following the movement",
+            "Static frame holding on the moment"
+        ]
+
+        compositions = [
+            "Figures positioned in foreground with {} structures visible behind",
+            "Centered composition with symmetrical balance",
+            "Off-center framing creating tension",
+            "Figures silhouetted against {} sky",
+            "Diagonal composition leading eye through scene"
+        ]
+
+        lighting_descriptions = [
+            f"{time_of_day} light {random.choice(['backlighting', 'illuminating', 'casting shadows across', 'warming'])} the figures",
+            f"{random.choice(['Harsh', 'Soft', 'Diffuse', 'Golden'])} {time_of_day} light creating {random.choice(['contrast', 'atmosphere', 'depth'])}",
+            f"Natural light mixing with {random.choice(['neon glow', 'artificial sources', 'reflected light'])}"
+        ]
+
+        cinematic = f"{random.choice(camera_movements)}. {random.choice(compositions).format(random.choice(['industrial', 'distant', 'architectural', 'urban']))}. {random.choice(lighting_descriptions)}."
+
+        return action, material, temp, cinematic
 
