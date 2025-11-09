@@ -285,9 +285,50 @@ def get_map_view():
     })
 
 
+def _convert_to_visual_description(action_text: str, characters_present: list) -> str:
+    """
+    Convert dialogue-heavy action into pure visual description for image generation.
+    Remove quoted dialogue, convert to physical actions/gestures.
+    """
+    import re
+
+    # Remove quoted dialogue
+    visual = re.sub(r'"[^"]*"', '', action_text)
+
+    # Remove dialogue tags
+    dialogue_verbs = ['asks', 'says', 'replies', 'answers', 'considers', 'responds', 'announces']
+    for verb in dialogue_verbs:
+        visual = re.sub(rf'\s+{verb}\.?\s*', '. ', visual)
+
+    # Convert common patterns to visual descriptions
+    replacements = {
+        'stands facing each other': 'face each other, postures tense',
+        'nods': 'nods, slight tilt of head',
+        'looks away': 'gaze directed away, body angled',
+        'waits': 'stands still, waiting posture',
+        'watches': 'observes, focused attention',
+        'The other': 'the second figure',
+    }
+
+    for old, new in replacements.items():
+        visual = visual.replace(old, new)
+
+    # Clean up spacing
+    visual = re.sub(r'\s+', ' ', visual)
+    visual = re.sub(r'\.\s*\.', '.', visual)
+    visual = visual.strip('. ')
+
+    # If too short after stripping dialogue, add generic visual action
+    if len(visual) < 20:
+        char_names = ', '.join(characters_present[:2]) if characters_present else 'figures'
+        visual = f"{char_names} interact, gestures exchanged, spatial tension between them"
+
+    return visual
+
+
 @app.route('/api/paintable/export-lora', methods=['POST'])
 def export_for_lora():
-    """Export paintable moments in format suitable for Lora training."""
+    """Export paintable moments in format suitable for image generation."""
     if current_simulation is None or len(current_simulation.world.interactions_log) == 0:
         return jsonify({'status': 'error', 'message': 'No interactions to analyze'}), 400
 
@@ -315,25 +356,38 @@ def export_for_lora():
         for char_id in char_ids:
             if char_id in current_simulation.world.characters:
                 char = current_simulation.world.characters[char_id]
-                # Extract key physical details
-                char_desc = f"{char.physical_description.split('.')[0]}"  # First sentence
-                char_descriptions.append(f"{char_desc} ({char.name})")
+                # Extract key physical details - more specific
+                desc_parts = char.physical_description.split('.')
+                physical = desc_parts[0] if desc_parts else char.physical_description
 
-        # Build complete image generation prompt
+                # Build character description for image gen
+                char_descriptions.append(f"{physical} wearing {char.archetype}-style clothing")
+
+        # Build complete image generation prompt WITHOUT DIALOGUE
         full_prompt = ""
 
-        # Characters and scene
+        # Characters positioned in scene
         if char_descriptions:
-            full_prompt += ", ".join(char_descriptions) + ". "
+            if len(char_descriptions) == 1:
+                full_prompt += f"{char_descriptions[0]}. "
+            else:
+                full_prompt += f"{char_descriptions[0]} and {char_descriptions[1]}. "
 
-        # Action/scenario
-        full_prompt += prompt.source_interaction.action_description + " "
+        # Convert action to visual-only (strip dialogue)
+        visual_action = _convert_to_visual_description(
+            prompt.source_interaction.action_description,
+            char_ids
+        )
+        full_prompt += visual_action + ". "
+
+        # Location context
+        full_prompt += f"Setting: {prompt.source_interaction.location_name}. "
 
         # Material/visual details
-        full_prompt += prompt.color_notes + " "
+        full_prompt += prompt.color_notes + ". "
 
-        # Composition/vantage
-        full_prompt += prompt.composition_description + " "
+        # Composition/vantage (technical image details)
+        full_prompt += prompt.composition_description + ". "
 
         # Mood/atmosphere
         full_prompt += f"{prompt.source_interaction.emotional_temperature.value} mood"
