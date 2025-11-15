@@ -2,9 +2,10 @@
 Semantic memory search using embeddings.
 Inspired by AI Town's memory retrieval system.
 """
+import math
 import os
 from typing import List, Optional, Tuple
-import numpy as np
+
 from src.models.character import Memory
 
 
@@ -99,10 +100,18 @@ class MemorySearchEngine:
         return embedding
 
     def _cosine_similarity(self, a: List[float], b: List[float]) -> float:
-        """Calculate cosine similarity between two vectors."""
-        a_np = np.array(a)
-        b_np = np.array(b)
-        return float(np.dot(a_np, b_np) / (np.linalg.norm(a_np) * np.linalg.norm(b_np)))
+        """Calculate cosine similarity between two vectors without numpy."""
+        if not a or not b:
+            return 0.0
+
+        dot_product = sum(x * y for x, y in zip(a, b))
+        norm_a = math.sqrt(sum(x * x for x in a))
+        norm_b = math.sqrt(sum(x * x for x in b))
+
+        if norm_a == 0 or norm_b == 0:
+            return 0.0
+
+        return float(dot_product / (norm_a * norm_b))
 
     def _search_with_keywords(
         self,
