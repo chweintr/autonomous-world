@@ -18,6 +18,7 @@ class EmotionalState(Enum):
     UNCERTAIN = "uncertain"
     AGGRESSIVE = "aggressive"
     WITHDRAWN = "withdrawn"
+    RESTLESS = "restless"
 
 
 @dataclass
@@ -220,5 +221,4 @@ class Character:
                 scored.append((matches, mem))
             scored.sort(reverse=True, key=lambda x: x[0])
             return [mem for _, mem in scored[:limit]]
-
 
