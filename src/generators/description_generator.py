@@ -16,6 +16,15 @@ from src.models.character import Character
 from src.models.location import Location
 from src.models.interaction import InteractionType, EmotionalTemperature
 
+# Exposed status dictionary so the API can report whether LLM mode is active.
+LLM_STATUS = {
+    "llm_requested": False,
+    "llm_enabled": False,
+    "has_api_key": False,
+    "model": None,
+    "last_error": None
+}
+
 
 class DescriptionGenerator:
     """Generates vivid, specific descriptions for interactions."""
@@ -28,8 +37,12 @@ class DescriptionGenerator:
             api_key: API key for LLM service (or set OPENAI_API_KEY env var)
             model: Model name (gpt-4o, gpt-4, gpt-3.5-turbo, etc.)
         """
+        global LLM_STATUS
         self.use_llm = use_llm
         self.model = model
+        
+        LLM_STATUS["llm_requested"] = use_llm
+        LLM_STATUS["model"] = model
         
         if use_llm:
             self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
@@ -40,9 +53,20 @@ class DescriptionGenerator:
                 print("Falling back to TEMPLATE-BASED GENERATION (limited variety)")
                 print("=" * 80)
                 self.use_llm = False
+                LLM_STATUS["llm_enabled"] = False
+                LLM_STATUS["has_api_key"] = False
+                LLM_STATUS["last_error"] = "OPENAI_API_KEY missing"
             else:
                 print(f"✓ LLM mode enabled with model: {self.model}")
                 print(f"✓ API key found: {self.api_key[:8]}...{self.api_key[-4:]}")
+                LLM_STATUS["llm_enabled"] = True
+                LLM_STATUS["has_api_key"] = True
+                LLM_STATUS["last_error"] = None
+        else:
+            self.api_key = None
+            LLM_STATUS["llm_enabled"] = False
+            LLM_STATUS["has_api_key"] = False
+            LLM_STATUS["last_error"] = "LLM disabled for this simulation"
     
     def generate_interaction_description(
         self,
@@ -81,6 +105,7 @@ class DescriptionGenerator:
         prompt = self._build_prompt(interaction_type, location, characters,
                                    action_context, time_of_day, weather)
         
+        global LLM_STATUS
         try:
             # Try to use OpenAI API (new v1.0+ syntax)
             from openai import OpenAI
@@ -135,10 +160,14 @@ class DescriptionGenerator:
             )
             
             result = response.choices[0].message.content
+            LLM_STATUS["last_error"] = None
+            LLM_STATUS["llm_enabled"] = True
             return self._parse_llm_response(result)
             
         except Exception as e:
             print(f"LLM generation failed: {e}. Falling back to templates.")
+            LLM_STATUS["last_error"] = str(e)
+            LLM_STATUS["llm_enabled"] = False
             return self._generate_with_template(interaction_type, location, characters,
                                                action_context, time_of_day, weather)
     
@@ -564,4 +593,3 @@ BE CREATIVE. BE SPECIFIC. BE VARIED. Don't phone it in."""
         cinematic = f"{random.choice(camera_movements)}. {random.choice(compositions).format(random.choice(['industrial', 'distant', 'architectural', 'urban']))}. {random.choice(lighting_descriptions)}."
 
         return action, material, temp, cinematic
-

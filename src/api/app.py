@@ -12,6 +12,7 @@ from src.engine.simulation import Simulation, SimulationConfig
 from src.models.interaction import Interaction
 from src.engine.prompt_extractor import PromptExtractor
 from src.engine.quality_analyzer import QualityAnalyzer
+from src.generators.description_generator import LLM_STATUS
 
 
 app = Flask(__name__, 
@@ -464,6 +465,29 @@ def extract_paintable_moments():
     })
 
 
+@app.route('/api/diagnostics/llm', methods=['GET'])
+def get_llm_status():
+    """Expose whether LLM mode is active and if an API key is available."""
+    has_env_key = bool(os.environ.get('OPENAI_API_KEY'))
+    status = {
+        'env_var': 'OPENAI_API_KEY',
+        'has_env_key': has_env_key,
+        'llm_requested': LLM_STATUS.get('llm_requested'),
+        'llm_enabled': LLM_STATUS.get('llm_enabled'),
+        'has_api_key_in_generator': LLM_STATUS.get('has_api_key'),
+        'model': LLM_STATUS.get('model'),
+        'last_error': LLM_STATUS.get('last_error'),
+        'simulation_uses_llm': bool(current_simulation and getattr(current_simulation, 'use_llm', False))
+    }
+
+    if has_env_key:
+        key = os.environ.get('OPENAI_API_KEY', '')
+        if key:
+            status['api_key_hint'] = f"{key[:4]}...{key[-4:]}"
+
+    return jsonify(status)
+
+
 # Initialize world state on module load for production (gunicorn)
 try:
     initialize_world()
@@ -479,4 +503,3 @@ if __name__ == '__main__':
     print(f"Loaded {len(world_state.characters)} characters")
     print(f"Loaded {len(world_state.locations)} locations")
     app.run(debug=True, port=5000)
-

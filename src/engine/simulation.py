@@ -59,6 +59,7 @@ class Simulation:
             use_llm=use_llm,
             api_key=llm_api_key
         )
+        self.use_llm = self.description_generator.use_llm
         self.is_running = False
         self.emergence_tracker = EmergenceTracker()
     
@@ -364,5 +365,3 @@ class EmergenceTracker:
                 report += f"- [{event.timestamp.strftime('%H:%M')}] {event.location_name}: {event.action_description[:80]}...\n"
         
         return report
-
-
