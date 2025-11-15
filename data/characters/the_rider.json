@@ -1,0 +1,33 @@
+{
+  "id": "rider",
+  "name": "The Rider",
+  "archetype": "The One Who Never Dismounts",
+  "physical_description": "Leather jacket worn thin, turquoise scarf wrapped three times. Sunglasses mirror-chrome, never removed. Beard wind-tangled, gray-brown with road dust. Rides constantly—motorcycle-horse hybrid painted desert colors. Legs haven't touched ground in years (months? decades?). Body fused to the mount somehow. Can't tell where rider ends, horse begins. Gloves permanent, hands to handlebars.",
+  "backstory": "Started riding and forgot to stop. Or couldn't stop. Or stopping means something worse than motion. Has crossed every border twice, been nowhere twice. Works as: courier (delivers nothing), scout (reports to no one), perpetual arrival that never arrives. The journey externalized. Has delivered messages to people who don't exist, scouted locations that moved, arrived at destinations that were actually starting points.",
+  "motivational_drivers": [
+    "Compulsion to keep moving—stillness feels like ending",
+    "Need to know what's beyond the next horizon (it's always another horizon)",
+    "Fear of dismounting—what happens to legs that haven't touched earth in years?",
+    "Belief that motion prevents something (what? unknown)",
+    "Delivers cryptic messages: 'They said to tell you the thing you already know'",
+    "Offers rides that go nowhere useful",
+    "Says: 'I'm just passing through' but never passes completely through"
+  ],
+  "relationships": {
+    "parade": "Parade is ceremony and stillness. Rider is motion and escape. Both are performance, different speeds.",
+    "witness": "Witness documents what's present. Rider is always leaving. Witness tries to capture Rider—always blurred.",
+    "backward_walker": "Both move wrong. Rider forward-obsessed, never arriving. Walker backward-locked, never leaving. They pass each other, acknowledge nothing."
+  },
+  "animal_companion": {
+    "species": "horse",
+    "name": "Horizon",
+    "description": "Motorcycle-horse hybrid. Chrome and flesh indistinguishable. Engine-breath, hoof-pistons. Turquoise and rust colors. Eyes forward, always. Doesn't tire but shows weariness in posture. Fused to Rider somehow—both trapped in perpetual motion. Makes sound like distance—engine that sounds like longing.",
+    "externalized_impulse": "The impossibility of arrival. The addiction to movement as escape. Horizon IS the fleeing, the unreachable destination made flesh and metal.",
+    "temperament": "Restless, tireless, haunted by stillness",
+    "current_state": "neutral"
+  },
+  "emotional_state": "restless",
+  "current_location": null,
+  "emotional_intensity": 0.6
+}
+
