@@ -45,12 +45,14 @@ class Interaction:
     action_description: str  # 2-3 sentences, vivid and specific
     material_details: str  # what would be visible
     emotional_temperature: EmotionalTemperature
-    cinematic_report: str = ""  # Camera movement, framing, scene composition
 
     # Metadata
     time_of_day: str
     weather: str
     environmental_context: str
+
+    # Optional fields (must come after required fields)
+    cinematic_report: str = ""  # Camera movement, framing, scene composition
 
     # Flags for emergence tracking
     is_unexpected: bool = False
