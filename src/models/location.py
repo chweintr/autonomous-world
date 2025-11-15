@@ -13,6 +13,7 @@ class TimeOfDay(Enum):
     MORNING = "morning"
     MIDDAY = "midday"
     AFTERNOON = "afternoon"
+    EVENING = "evening"
     DUSK = "dusk"
     NIGHT = "night"
     MIDNIGHT = "midnight"
@@ -27,6 +28,8 @@ class Weather(Enum):
     STORM_APPROACHING = "storm_approaching"
     RAIN = "rain"
     FOG = "fog"
+    COLD = "cold"
+    HUMID = "humid"
 
 
 @dataclass
@@ -90,6 +93,7 @@ class Location:
             TimeOfDay.MORNING: "morning light",
             TimeOfDay.MIDDAY: "harsh midday sun",
             TimeOfDay.AFTERNOON: "golden afternoon",
+            TimeOfDay.EVENING: "evening glow",
             TimeOfDay.DUSK: "fading light",
             TimeOfDay.NIGHT: "darkness",
             TimeOfDay.MIDNIGHT: "deep night"
@@ -102,9 +106,9 @@ class Location:
             Weather.DUSTY: "dust in the air",
             Weather.STORM_APPROACHING: "storm gathering",
             Weather.RAIN: "rain falling",
-            Weather.FOG: "thick fog"
+            Weather.FOG: "thick fog",
+            Weather.COLD: "cold air settling",
+            Weather.HUMID: "dense humid air"
         }
         
         return f"{time_descriptions[self.current_time]}, {weather_descriptions[self.current_weather]}"
-
-
