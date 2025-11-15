@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Map - Diorama View</title>
+    <link rel="stylesheet" href="/static/css/map.css">
+</head>
+<body>
+    <div class="map-container">
+        <header class="map-header">
+            <h1>WORLD MAP</h1>
+            <div class="nav-links">
+                <a href="/">← Back to Simulation</a>
+            </div>
+        </header>
+
+        <div class="controls-bar">
+            <div class="time-display" id="current-time">00:00</div>
+            <div class="view-controls">
+                <button class="ctrl-btn" onclick="scrollToLocation('prev')">← Previous Set</button>
+                <button class="ctrl-btn" onclick="scrollToLocation('next')">Next Set →</button>
+            </div>
+            <div class="auto-scroll">
+                <label>
+                    <input type="checkbox" id="auto-scroll" onchange="toggleAutoScroll()">
+                    Auto-follow characters
+                </label>
+            </div>
+        </div>
+
+        <!-- Main diorama canvas -->
+        <div class="diorama-viewport" id="diorama-viewport">
+            <div class="stage-container" id="stage-container">
+                <!-- Locations will be rendered here as stage sets -->
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #FF69B4;"></div>
+                <span>Charged/Tense</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #4ECDC4;"></div>
+                <span>Calm/Observational</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #FFE66D;"></div>
+                <span>Playful/Exuberant</span>
+            </div>
+        </div>
+
+        <!-- Character info overlay -->
+        <div class="character-overlay" id="character-overlay">
+            <div class="overlay-content" id="overlay-content">
+                <!-- Character details will be populated here on click -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/map.js"></script>
+</body>
+</html>

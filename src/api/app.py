@@ -48,6 +48,11 @@ def index_classic():
     """Classic interface (fallback)."""
     return render_template('index.html')
 
+@app.route('/map')
+def map_view():
+    """Diorama map visualization."""
+    return render_template('map.html')
+
 
 @app.route('/api/characters', methods=['GET'])
 def get_characters():
@@ -273,7 +278,8 @@ def get_map_view():
                 'id': c.id,
                 'name': c.name,
                 'emotional_state': c.emotional_state.value,
-                'animal': c.animal_companion.name
+                'animal': c.animal_companion.name,
+                'location': loc.name
             } for c in chars_here],
             'time_of_day': loc.current_time.value,
             'weather': loc.current_weather.value

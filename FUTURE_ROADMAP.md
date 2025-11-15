@@ -357,6 +357,178 @@ Time of day, weather affect the visual in real-time.
 
 ---
 
+## Map Visualization Approaches
+
+These are potential visualization methods for displaying character locations and movements. Different approaches may suit different phases.
+
+### 1. Diorama/Stage Set View ⭐ (Phase 1-2 Candidate)
+
+**Concept:**
+- Locations as theatrical backdrops or fashion editorial sets
+- Characters as dimensional cut-out figures that slide between sets
+- Horizontal scrolling between locations (like moving between stage sets)
+- Emphasis on cinematic framing, wetness, reflections, neon signs as set dressing
+- Think: Fashion show backstage with characters moving between setups
+
+**Why it fits:**
+- Aligns with editorial/fashion aesthetic
+- Characters move between "shoots" or "sets"
+- Can show actual color palette (pink/aqua/yellow), wetness, neon
+- Scalable (can add more visual detail over time)
+- Distinctive from game-like top-down maps
+
+**Implementation:**
+- Canvas-based rendering (HTML5 Canvas or SVG)
+- Each location = a stage set with aesthetic details
+- Characters = figure silhouettes or simplified representations
+- Camera pans/slides between locations horizontally
+- Real-time updates as simulation runs
+
+**Best for:** Phase 1-2, before full 3D capability
+
+---
+
+### 2. Contact Sheet / Multi-Camera
+
+**Concept:**
+- 12 simultaneous frames (one per location) in a grid
+- Each frame shows the location like a fashion photographer's contact sheet
+- Characters appear/fade in whichever frames they occupy
+- Click a frame to zoom to that location
+- Reflects editorial/documentation aesthetic
+
+**Why it fits:**
+- Emphasizes the "observation/documentation" nature of the project
+- See everything at once (like security cameras or photo proofs)
+- Very editorial/archival feeling
+- Easy to spot patterns (emergence tracking becomes visual)
+
+**Implementation:**
+- Grid layout with live-updating location views
+- Each cell is a mini-viewport
+- Fade characters in/out based on location
+- Zoom modal for detail view
+
+**Best for:** Phase 1-2, monitoring/observation mode
+
+---
+
+### 3. Isometric Assemblage
+
+**Concept:**
+- Isometric view but styled as found-object sculpture
+- Locations as dimensional installations (mint tile bathrooms, pink grounds, neon)
+- Characters as sculptural figures (matching impasto painting style)
+- Reflections in puddles, layered objects
+- Think: Architectural model meets cabinet of curiosities
+
+**Why it fits:**
+- Reflects the found-object assemblage aesthetic from reference images
+- Shows depth and dimensionality without full 3D
+- Can include maximalist detail (layered objects, assemblage)
+- Sculptural quality matches the impasto paintings
+
+**Implementation:**
+- Isometric rendering engine
+- Layered sprites/objects with depth
+- Puddle reflections as visual element
+- Characters as dimensional figures
+
+**Best for:** Phase 2-3, bridge to full 3D
+
+---
+
+### 5. Cinematic Tracking Shot
+
+**Concept:**
+- Single large viewport that follows the "camera"
+- Shows one location at a time with proper cinematic framing
+- Characters enter/exit frame based on their location
+- Timeline scrubber to review past moments
+- Most "filmic" - like watching a Jeunet film
+
+**Why it fits:**
+- Most aligned with the cinematic (not game-like) nature of the world
+- Proper composition and framing for each moment
+- Can use your actual aesthetic (pink/aqua, wetness, neon)
+- Emphasizes the "you're observing/filming" aspect
+
+**Implementation:**
+- Single canvas with cinematic aspect ratio
+- Camera transitions between locations (pan, fade, cut)
+- Timeline UI to scrub through simulation history
+- Proper framing rules (rule of thirds, etc.)
+
+**Best for:** Phase 2-3, when visuals are rich enough to warrant full-screen
+
+---
+
+### 6. Layered Transparency (Experimental)
+
+**Concept:**
+- Locations as translucent layers that stack
+- See through multiple locations simultaneously
+- Characters visible through layers (ghosting effect)
+- Reflects wetness/reflection/transparency aesthetic
+- Surreal, dreamlike
+
+**Why it fits:**
+- Very unique, matches the reflective/wet quality of the aesthetic
+- Dreamlike and surreal
+- Shows all locations at once but in a poetic way
+- Experimental and distinctive
+
+**Implementation:**
+- Stacked semi-transparent canvases
+- Parallax scrolling for depth
+- Characters ghost through layers
+- Adjustable opacity per layer
+
+**Best for:** Experimental mode, art installation version
+
+---
+
+### When to Use Which Approach
+
+**Phase 1 (Text, now):**
+- Start with **Diorama/Stage Set** (simplest, most aligned)
+- Alternative: **Contact Sheet** (see all locations at once)
+
+**Phase 2 (Images):**
+- **Diorama** with actual generated images as backdrops
+- **Cinematic Tracking** if images are high quality enough
+- **Isometric Assemblage** if you want dimensional detail
+
+**Phase 3 (Video/AR):**
+- **Cinematic Tracking** (full-screen video clips)
+- **Isometric** as bridge to 3D
+
+**Phase 4+ (Spatial/3D):**
+- Free camera in explorable 3D world
+- Any of these as "monitoring" modes
+
+**Experimental/Installation:**
+- **Layered Transparency** for art shows
+- **Contact Sheet** for pattern observation
+
+---
+
+### Implementation Priority
+
+**Near-term (Phase 1):**
+1. Build **Diorama/Stage Set View** (distinctive, achievable, fits aesthetic)
+
+**Mid-term (Phase 2):**
+2. Add **Contact Sheet** as alternate view mode
+3. Enhance Diorama with generated images as backdrops
+
+**Long-term (Phase 3+):**
+4. **Cinematic Tracking** when visuals are cinema-quality
+5. **Isometric Assemblage** as 3D bridge
+6. **Layered Transparency** as experimental mode
+
+---
+
 ## Technology Tracking
 
 ### Tools We're Watching
